@@ -2,11 +2,9 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>地球抵抗组织 | Earth Resistance Organization</title>
 <meta name="description" content="面对三体文明入侵，人类最后的希望。加入抵抗组织，为文明而战。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg-primary: #0a0a0f;
@@ -24,16 +22,17 @@
   --glow-cyan: 0 0 20px rgba(0, 212, 255, 0.3);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Noto Serif SC', serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
-  line-height: 1.8;
+  line-height: 1.7;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 body::before {
@@ -54,27 +53,15 @@ body::before {
   z-index: 9999;
 }
 
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.02;
-  pointer-events: none;
-  z-index: 9998;
-}
-
 header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  padding: 1.2rem 3rem;
-  background: rgba(10, 10, 15, 0.95);
+  padding: 0.8rem 1rem;
+  background: rgba(10, 10, 15, 0.98);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   z-index: 1000;
   display: flex;
@@ -85,12 +72,12 @@ header {
 .logo {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.6rem;
 }
 
 .logo-icon {
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border: 2px solid var(--accent-red);
   border-radius: 50%;
   display: flex;
@@ -102,21 +89,21 @@ header {
 
 .logo-icon::before {
   content: '+';
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 1.6rem;
+  font-family: monospace;
+  font-size: 1.2rem;
   color: var(--accent-red);
   font-weight: bold;
 }
 
 @keyframes pulse-glow {
   0%, 100% { box-shadow: 0 0 0 0 rgba(255, 42, 42, 0.4); }
-  50% { box-shadow: 0 0 30px 8px rgba(255, 42, 42, 0.6); }
+  50% { box-shadow: 0 0 20px 5px rgba(255, 42, 42, 0.5); }
 }
 
 .logo-text {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.15em;
 }
 
 .logo-text span {
@@ -124,37 +111,80 @@ header {
   text-shadow: var(--glow-red);
 }
 
-nav {
+.menu-btn {
+  width: 40px;
+  height: 40px;
   display: flex;
-  gap: 2.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
-nav a {
-  color: var(--text-dim);
+.menu-btn span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-secondary);
+  transition: all 0.3s;
+}
+
+.menu-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.mobile-nav {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: rgba(10, 10, 15, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem;
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  z-index: 999;
+}
+
+.mobile-nav.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav a {
+  display: block;
+  padding: 1rem;
+  color: var(--text-secondary);
   text-decoration: none;
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  position: relative;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid var(--border);
   transition: color 0.3s;
 }
 
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--accent-red);
-  transition: width 0.3s;
+.mobile-nav a:last-child {
+  border-bottom: none;
 }
 
-nav a:hover {
-  color: var(--text-primary);
-}
-
-nav a:hover::after {
-  width: 100%;
+.mobile-nav a:hover {
+  color: var(--accent-red);
 }
 
 .hero {
@@ -164,47 +194,28 @@ nav a:hover::after {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 8rem 2rem 4rem;
+  padding: 5rem 1.2rem 3rem;
   position: relative;
   background:
-    radial-gradient(ellipse at 20% 80%, rgba(255,42,42,0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(0,212,255,0.08) 0%, transparent 40%),
+    radial-gradient(ellipse at 20% 80%, rgba(255,42,42,0.1) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(0,212,255,0.05) 0%, transparent 50%),
     var(--bg-primary);
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    linear-gradient(135deg, transparent 40%, rgba(255,42,42,0.03) 50%, transparent 60%),
-    linear-gradient(225deg, transparent 40%, rgba(0,212,255,0.03) 50%, transparent 60%);
-  pointer-events: none;
 }
 
 .alert-banner {
   display: inline-flex;
   align-items: center;
-  gap: 0.8rem;
-  padding: 0.8rem 1.6rem;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
   background: rgba(255, 42, 42, 0.1);
   border: 1px solid var(--accent-red);
   border-radius: 4px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.8rem;
+  font-family: monospace;
+  font-size: 0.7rem;
   color: var(--accent-red);
-  letter-spacing: 0.15em;
-  margin-bottom: 3rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
   animation: flicker 3s infinite;
-}
-
-.alert-banner::before {
-  content: '!';
-  font-weight: bold;
-  font-size: 1rem;
 }
 
 @keyframes flicker {
@@ -215,171 +226,119 @@ nav a:hover::after {
 }
 
 .hero h1 {
-  font-size: clamp(2.5rem, 10vw, 6rem);
+  font-size: 2rem;
   font-weight: 700;
-  letter-spacing: 0.2em;
-  margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 1;
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+  line-height: 1.3;
 }
 
 .hero h1 .highlight {
   color: var(--accent-red);
   text-shadow: var(--glow-red);
-  position: relative;
-}
-
-.hero h1 .highlight::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
-  letter-spacing: 0.5em;
-  margin-bottom: 4rem;
-  font-weight: 400;
+  letter-spacing: 0.3em;
+  margin-bottom: 2.5rem;
 }
 
 .hero-quote {
-  max-width: 700px;
-  font-size: 1.15rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
   font-style: italic;
-  border-left: 3px solid var(--accent-red);
-  padding-left: 2rem;
+  border-left: 2px solid var(--accent-red);
+  padding-left: 1rem;
   text-align: left;
-  position: relative;
-  z-index: 1;
-  line-height: 2;
-}
-
-.hero-quote::before {
-  content: '';
-  position: absolute;
-  left: -0.5rem;
-  top: -1rem;
-  font-size: 4rem;
-  color: var(--accent-red);
-  opacity: 0.3;
-  font-family: Georgia, serif;
+  line-height: 1.8;
+  margin: 0 0.5rem;
 }
 
 .hero-quote .author {
   display: block;
-  margin-top: 1.2rem;
-  font-size: 0.85rem;
+  margin-top: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-dim);
-  letter-spacing: 0.15em;
   font-style: normal;
 }
 
 .countdown-box {
-  margin-top: 4rem;
-  padding: 2rem 3rem;
+  margin-top: 2.5rem;
+  padding: 1.2rem 1.5rem;
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  position: relative;
-  z-index: 1;
-}
-
-.countdown-box::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  right: -1px;
-  bottom: -1px;
-  background: linear-gradient(135deg, var(--accent-red), transparent, var(--accent-cyan));
-  border-radius: 12px;
-  z-index: -1;
-  opacity: 0.3;
+  border-radius: 8px;
 }
 
 .countdown-label {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.75rem;
+  font-family: monospace;
+  font-size: 0.65rem;
   color: var(--text-dim);
-  letter-spacing: 0.25em;
-  margin-bottom: 0.8rem;
-  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
 }
 
 .countdown-time {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 2.5rem;
+  font-family: monospace;
+  font-size: 1.4rem;
   color: var(--accent-red);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.1em;
   text-shadow: var(--glow-red);
 }
 
 section {
-  padding: 6rem 2rem;
-  position: relative;
+  padding: 3rem 1rem;
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 5rem;
+  margin-bottom: 2.5rem;
 }
 
 .section-label {
   display: inline-block;
-  padding: 0.6rem 1.4rem;
+  padding: 0.4rem 1rem;
   background: rgba(255, 42, 42, 0.08);
   border: 1px solid var(--accent-red);
   color: var(--accent-red);
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.25em;
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
+  font-family: monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 1rem;
 }
 
 .section-title {
-  font-size: 2.8rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  letter-spacing: 0.25em;
-  margin-bottom: 1.5rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
 }
 
 .section-desc {
   color: var(--text-secondary);
-  max-width: 700px;
-  margin: 0 auto;
-  font-size: 1.05rem;
-  line-height: 2;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  padding: 0 0.5rem;
 }
 
 .history-section {
-  background:
-    radial-gradient(ellipse at 10% 50%, rgba(184, 41, 221, 0.06) 0%, transparent 50%),
-    var(--bg-secondary);
+  background: var(--bg-secondary);
 }
 
 .history-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 2.5rem;
-  max-width: 1400px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
 .history-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 3rem;
+  border-radius: 12px;
+  padding: 1.5rem;
   position: relative;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
 }
 
 .history-card::before {
@@ -388,52 +347,40 @@ section {
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
+  height: 2px;
   background: linear-gradient(90deg, var(--accent-red), var(--accent-cyan));
-  transform: scaleX(0);
-  transition: transform 0.4s;
-}
-
-.history-card:hover {
-  border-color: rgba(255, 42, 42, 0.3);
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.history-card:hover::before {
-  transform: scaleX(1);
 }
 
 .era-number {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 4rem;
+  font-family: monospace;
+  font-size: 2.5rem;
   color: var(--accent-red);
-  opacity: 0.15;
+  opacity: 0.2;
   position: absolute;
-  top: 1.5rem;
-  right: 2rem;
+  top: 1rem;
+  right: 1.2rem;
   font-weight: bold;
 }
 
 .era-title {
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: 0.8rem;
-  letter-spacing: 0.15em;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.1em;
 }
 
 .era-period {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--accent-cyan);
-  letter-spacing: 0.15em;
-  margin-bottom: 1.5rem;
-  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  font-family: monospace;
 }
 
 .era-desc {
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
-  line-height: 2;
+  line-height: 1.8;
 }
 
 .factions-section {
@@ -441,47 +388,38 @@ section {
 }
 
 .factions-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .faction-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 2.5rem;
-  position: relative;
-  transition: all 0.3s;
+  border-radius: 10px;
+  padding: 1.2rem;
 }
 
-.faction-card.enemy { border-left: 4px solid var(--accent-red); }
-.faction-card.ally { border-left: 4px solid var(--accent-green); }
-.faction-card.neutral { border-left: 4px solid var(--accent-cyan); }
-
-.faction-card:hover {
-  transform: translateX(8px);
-  background: rgba(255, 255, 255, 0.02);
-}
+.faction-card.enemy { border-left: 3px solid var(--accent-red); }
+.faction-card.ally { border-left: 3px solid var(--accent-green); }
+.faction-card.neutral { border-left: 3px solid var(--accent-cyan); }
 
 .faction-name {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  letter-spacing: 0.1em;
+  gap: 0.6rem;
+  letter-spacing: 0.05em;
 }
 
 .faction-status {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.7rem;
-  padding: 0.35rem 0.8rem;
-  border-radius: 4px;
-  letter-spacing: 0.1em;
+  font-family: monospace;
+  font-size: 0.6rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
   font-weight: bold;
 }
 
@@ -504,86 +442,68 @@ section {
 }
 
 .faction-desc {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
-  line-height: 2;
+  line-height: 1.7;
 }
 
 .wallfacer-section {
-  background:
-    radial-gradient(ellipse at 90% 50%, rgba(255, 176, 0, 0.06) 0%, transparent 50%),
-    var(--bg-secondary);
+  background: var(--bg-secondary);
 }
 
 .wallfacer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  max-width: 1300px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .wallfacer-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 3rem 2rem;
+  border-radius: 12px;
+  padding: 1.5rem;
   text-align: center;
-  position: relative;
-  transition: all 0.4s;
-}
-
-.wallfacer-card:hover {
-  border-color: var(--accent-amber);
-  box-shadow: 0 0 40px rgba(255, 176, 0, 0.1);
-  transform: translateY(-5px);
 }
 
 .wallfacer-avatar {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   border: 2px solid var(--border);
   border-radius: 50%;
-  margin: 0 auto 1.8rem;
+  margin: 0 auto 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 2.8rem;
+  font-family: monospace;
+  font-size: 2rem;
   background: rgba(255, 255, 255, 0.03);
   color: var(--accent-amber);
-  transition: all 0.3s;
-}
-
-.wallfacer-card:hover .wallfacer-avatar {
-  border-color: var(--accent-amber);
-  box-shadow: 0 0 30px rgba(255, 176, 0, 0.2);
 }
 
 .wallfacer-name {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 0.6rem;
-  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.05em;
 }
 
 .wallfacer-title {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: var(--accent-amber);
-  letter-spacing: 0.2em;
-  margin-bottom: 1.5rem;
-  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+  font-family: monospace;
 }
 
 .wallfacer-strategy {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
   font-style: italic;
-  padding: 1.2rem;
+  padding: 0.8rem;
   background: rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
-  border-left: 3px solid var(--accent-amber);
-  line-height: 1.8;
+  border-radius: 6px;
+  border-left: 2px solid var(--accent-amber);
+  line-height: 1.6;
 }
 
 .tech-section {
@@ -592,98 +512,51 @@ section {
 
 .tech-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1300px;
-  margin: 0 auto;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
 }
 
 .tech-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 2.5rem;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.tech-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.05), transparent);
-  transition: left 0.5s;
-}
-
-.tech-card:hover::after {
-  left: 100%;
-}
-
-.tech-card:hover {
-  border-color: var(--accent-cyan);
-  transform: translateY(-5px);
+  border-radius: 10px;
+  padding: 1.2rem 0.8rem;
+  text-align: center;
 }
 
 .tech-icon {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 3rem;
-  margin-bottom: 1.2rem;
+  font-family: monospace;
+  font-size: 2rem;
+  margin-bottom: 0.6rem;
   color: var(--accent-cyan);
   text-shadow: var(--glow-cyan);
 }
 
 .tech-name {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  margin-bottom: 1rem;
-  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
   color: var(--accent-cyan);
 }
 
 .tech-desc {
-  font-size: 0.95rem;
+  font-size: 0.7rem;
   color: var(--text-secondary);
-  line-height: 1.9;
+  line-height: 1.5;
 }
 
 .dark-forest-section {
-  padding: 8rem 2rem;
+  padding: 3rem 1rem;
   text-align: center;
-  background:
-    radial-gradient(ellipse at center, rgba(255, 42, 42, 0.05) 0%, transparent 60%),
-    var(--bg-secondary);
-  position: relative;
-}
-
-.dark-forest-section::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(255, 42, 42, 0.03) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.dark-forest-section blockquote {
-  position: relative;
-  z-index: 1;
-  max-width: 900px;
-  margin: 0 auto;
+  background: var(--bg-secondary);
 }
 
 .dark-forest-section p {
-  font-size: clamp(1.2rem, 4vw, 1.8rem);
-  line-height: 2.4;
-  margin-bottom: 2.5rem;
-  letter-spacing: 0.15em;
-  font-weight: 400;
+  font-size: 1rem;
+  line-height: 2;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
 }
 
 .dark-forest-section .highlight {
@@ -694,58 +567,54 @@ section {
 
 .dark-forest-section cite {
   color: var(--text-dim);
-  font-size: 1rem;
-  letter-spacing: 0.25em;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
   font-style: normal;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: monospace;
 }
 
 .join-section {
-  padding: 8rem 2rem;
+  padding: 3rem 1rem;
   text-align: center;
-  background:
-    radial-gradient(ellipse at 50% 100%, rgba(255, 42, 42, 0.1) 0%, transparent 50%),
-    var(--bg-primary);
+  background: var(--bg-primary);
 }
 
 .join-box {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 4rem;
+  padding: 2rem 1.2rem;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 12px;
   position: relative;
 }
 
 .join-box::before {
   content: 'TOP SECRET';
   position: absolute;
-  top: -14px;
+  top: -10px;
   left: 50%;
   transform: translateX(-50%);
   background: var(--bg-card);
-  padding: 0.5rem 1.5rem;
+  padding: 0.3rem 1rem;
   border: 1px solid var(--accent-red);
   color: var(--accent-red);
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.25em;
+  font-family: monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
   font-weight: bold;
 }
 
 .join-title {
-  font-size: 2.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.2em;
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
 }
 
 .join-desc {
   color: var(--text-secondary);
-  margin-bottom: 3rem;
-  line-height: 2;
-  font-size: 1.05rem;
+  margin-bottom: 1.8rem;
+  line-height: 1.8;
+  font-size: 0.85rem;
 }
 
 .join-desc span {
@@ -756,45 +625,27 @@ section {
 .join-btn {
   display: inline-flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1.4rem 3.5rem;
+  gap: 0.6rem;
+  padding: 1rem 2rem;
   background: transparent;
   border: 2px solid var(--accent-red);
   color: var(--accent-red);
-  font-size: 1rem;
-  letter-spacing: 0.25em;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
   cursor: pointer;
-  transition: all 0.4s;
+  transition: all 0.3s;
   text-decoration: none;
   font-weight: 600;
-  font-family: 'Noto Serif SC', serif;
-  position: relative;
-  overflow: hidden;
-}
-
-.join-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: var(--accent-red);
-  transition: left 0.4s;
-  z-index: -1;
+  border-radius: 4px;
 }
 
 .join-btn:hover {
+  background: var(--accent-red);
   color: var(--bg-primary);
-  box-shadow: 0 0 50px rgba(255, 42, 42, 0.5);
-}
-
-.join-btn:hover::before {
-  left: 0;
 }
 
 footer {
-  padding: 5rem 2rem;
+  padding: 2.5rem 1rem;
   border-top: 1px solid var(--border);
   text-align: center;
   background: var(--bg-primary);
@@ -803,175 +654,107 @@ footer {
 .footer-warning {
   display: inline-flex;
   align-items: center;
-  gap: 0.8rem;
-  padding: 0.8rem 1.5rem;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
   background: rgba(255, 42, 42, 0.08);
   border: 1px solid var(--accent-red);
   color: var(--accent-red);
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  margin-bottom: 2.5rem;
+  font-family: monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
   animation: flicker 4s infinite;
 }
 
 .footer-text {
   color: var(--text-dim);
-  font-size: 0.9rem;
-  letter-spacing: 0.15em;
-  margin-bottom: 1.2rem;
-  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  font-family: monospace;
 }
 
 .footer-quote {
   font-style: italic;
   color: var(--text-secondary);
-  font-size: 1.1rem;
-  max-width: 700px;
-  margin: 0 auto 2rem;
-  line-height: 2;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
 }
 
 .footer-links {
-  margin-top: 2.5rem;
   display: flex;
   justify-content: center;
-  gap: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .footer-links a {
   color: var(--text-dim);
   text-decoration: none;
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  transition: color 0.3s;
-  position: relative;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
 }
 
-.footer-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--accent-red);
-  transition: width 0.3s;
-}
+.desktop-nav { display: none; }
 
-.footer-links a:hover {
-  color: var(--accent-red);
-}
-
-.footer-links a:hover::after {
-  width: 100%;
-}
-
-@media (max-width: 768px) {
-  header {
-    padding: 1rem;
-    flex-direction: column;
-    gap: 1rem;
-  }
+@media (min-width: 769px) {
+  .menu-btn { display: none; }
+  .mobile-nav { display: none; }
+  .desktop-nav { display: flex; }
   
-  .logo-text {
-    font-size: 0.95rem;
-    letter-spacing: 0.15em;
-  }
+  header { padding: 1.2rem 3rem; }
+  .logo-icon { width: 44px; height: 44px; }
+  .logo-icon::before { font-size: 1.6rem; }
+  .logo-text { font-size: 1.1rem; letter-spacing: 0.3em; }
   
-  nav {
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+  .hero { padding: 8rem 2rem 4rem; }
+  .hero h1 { font-size: clamp(2.5rem, 10vw, 6rem); letter-spacing: 0.2em; margin-bottom: 1.5rem; }
+  .hero-subtitle { font-size: 1.2rem; letter-spacing: 0.5em; margin-bottom: 4rem; }
+  .hero-quote { font-size: 1.15rem; padding-left: 2rem; margin: 0; max-width: 700px; }
+  .countdown-box { margin-top: 4rem; padding: 2rem 3rem; }
+  .countdown-time { font-size: 2.5rem; }
   
-  nav a {
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-  }
+  section { padding: 6rem 2rem; }
+  .section-title { font-size: 2.8rem; }
+  .section-desc { font-size: 1.05rem; }
   
-  .hero {
-    padding: 9rem 1rem 3rem;
-  }
+  .history-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2.5rem; }
+  .history-card { padding: 3rem; }
+  .era-number { font-size: 4rem; }
+  .era-title { font-size: 1.8rem; }
   
-  .hero h1 {
-    font-size: clamp(1.8rem, 10vw, 3.5rem);
-    letter-spacing: 0.1em;
-  }
+  .factions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; }
+  .faction-card { padding: 2.5rem; }
+  .faction-name { font-size: 1.3rem; }
+  .faction-desc { font-size: 0.95rem; }
   
-  .hero-subtitle {
-    font-size: 0.9rem;
-    letter-spacing: 0.25em;
-  }
+  .wallfacer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+  .wallfacer-card { padding: 3rem 2rem; }
+  .wallfacer-avatar { width: 100px; height: 100px; font-size: 2.8rem; }
+  .wallfacer-name { font-size: 1.4rem; }
   
-  .hero-quote {
-    font-size: 0.95rem;
-    padding-left: 1.2rem;
-    margin: 0 0.5rem;
-  }
+  .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .tech-card { padding: 2.5rem; }
+  .tech-icon { font-size: 3rem; }
+  .tech-name { font-size: 1.2rem; }
+  .tech-desc { font-size: 0.95rem; }
   
-  .countdown-box {
-    padding: 1.5rem 1rem;
-    margin: 2rem 0.5rem 0;
-  }
+  .dark-forest-section { padding: 8rem 2rem; }
+  .dark-forest-section p { font-size: clamp(1.2rem, 4vw, 1.8rem); }
   
-  .countdown-time {
-    font-size: 1.3rem;
-    letter-spacing: 0.1em;
-  }
+  .join-section { padding: 8rem 2rem; }
+  .join-box { max-width: 700px; margin: 0 auto; padding: 4rem; }
+  .join-title { font-size: 2.2rem; }
+  .join-desc { font-size: 1.05rem; }
+  .join-btn { padding: 1.4rem 3.5rem; }
   
-  .section-title {
-    font-size: 1.8rem;
-    letter-spacing: 0.15em;
-  }
-  
-  .history-grid,
-  .factions-grid,
-  .wallfacer-grid,
-  .tech-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 0 0.5rem;
-  }
-  
-  .history-card,
-  .faction-card,
-  .wallfacer-card,
-  .tech-card {
-    padding: 2rem 1.5rem;
-  }
-  
-  .era-number {
-    font-size: 3rem;
-  }
-  
-  .join-box {
-    padding: 3rem 1.5rem;
-    margin: 0 0.5rem;
-  }
-  
-  .join-title {
-    font-size: 1.5rem;
-  }
-  
-  .join-btn {
-    padding: 1.2rem 2.5rem;
-    font-size: 0.9rem;
-  }
-  
-  .footer-links {
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
-  
-  .dark-forest-section p {
-    font-size: 1rem;
-    line-height: 2;
-  }
+  footer { padding: 5rem 2rem; }
+  .footer-links { gap: 2.5rem; }
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -980,7 +763,7 @@ footer {
 
 ::-webkit-scrollbar-thumb {
   background: var(--border);
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -995,7 +778,12 @@ footer {
     <div class="logo-icon"></div>
     <div class="logo-text">地球<span>抵抗</span>组织</div>
   </div>
-  <nav>
+  <button class="menu-btn" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <nav class="desktop-nav">
     <a href="#about">关于组织</a>
     <a href="#history">危机全史</a>
     <a href="#factions">势力分布</a>
@@ -1003,6 +791,14 @@ footer {
     <a href="#tech">科技档案</a>
   </nav>
 </header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about" onclick="toggleMenu()">关于组织</a>
+  <a href="#history" onclick="toggleMenu()">危机全史</a>
+  <a href="#factions" onclick="toggleMenu()">势力分布</a>
+  <a href="#wallfacer" onclick="toggleMenu()">面壁计划</a>
+  <a href="#tech" onclick="toggleMenu()">科技档案</a>
+</div>
 
 <section class="hero" id="about">
   <div class="alert-banner">
@@ -1019,7 +815,7 @@ footer {
   
   <div class="countdown-box">
     <div class="countdown-label">三体舰队抵达太阳系倒计时</div>
-    <div class="countdown-time">195年 247天 08:33:17</div>
+    <div class="countdown-time" id="countdown">195年 247天 08:33:17</div>
   </div>
 </section>
 
@@ -1028,8 +824,7 @@ footer {
     <span class="section-label">CRISIS CHRONICLE</span>
     <h2 class="section-title">危机全史</h2>
     <p class="section-desc">
-      从红岸基地的第一声呼唤，到黑暗森林威慑的建立，<br>
-      人类文明在毁灭边缘挣扎求生的史诗历程。
+      从红岸基地的第一声呼唤，到黑暗森林威慑的建立，人类文明在毁灭边缘挣扎求生的史诗历程。
     </p>
   </div>
   
@@ -1165,7 +960,7 @@ footer {
       <div class="tech-icon">Z</div>
       <h4 class="tech-name">智子</h4>
       <p class="tech-desc">
-        三体文明将质子二维展开后蚀刻电路，再收缩回十一维形成的超级计算机。能够锁死人类基础物理研究，并实时监控地球。
+        三体文明将质子二维展开后蚀刻电路，再收缩回十一维形成的超级计算机。
       </p>
     </div>
     
@@ -1173,7 +968,7 @@ footer {
       <div class="tech-icon">W</div>
       <h4 class="tech-name">水滴</h4>
       <p class="tech-desc">
-        三体探测器，由强互作用力材料（SIM）制成，表面绝对光滑，温度接近绝对零度。摧毁了人类两千艘恒星级战舰。
+        三体探测器，由强互作用力材料制成，摧毁了人类两千艘恒星级战舰。
       </p>
     </div>
     
@@ -1181,7 +976,7 @@ footer {
       <div class="tech-icon">G</div>
       <h4 class="tech-name">引力波发射器</h4>
       <p class="tech-desc">
-        能够向宇宙广播三体世界坐标的装置，是黑暗森林威慑的核心。罗辑以此建立对三体世界的战略威慑。
+        能够向宇宙广播三体世界坐标的装置，是黑暗森林威慑的核心。
       </p>
     </div>
     
@@ -1189,7 +984,7 @@ footer {
       <div class="tech-icon">2</div>
       <h4 class="tech-name">二向箔</h4>
       <p class="tech-desc">
-        高级文明使用的降维武器，能够将三维空间二维化。歌者文明用二向箔毁灭了整个太阳系。
+        高级文明使用的降维武器，能够将三维空间二维化。
       </p>
     </div>
     
@@ -1197,7 +992,7 @@ footer {
       <div class="tech-icon">C</div>
       <h4 class="tech-name">曲率驱动</h4>
       <p class="tech-desc">
-        通过改变飞船后方空间曲率实现超光速飞行。程心乘坐曲率驱动飞船星环号逃离二维化的太阳系。
+        通过改变飞船后方空间曲率实现超光速飞行。
       </p>
     </div>
     
@@ -1205,7 +1000,7 @@ footer {
       <div class="tech-icon">J</div>
       <h4 class="tech-name">阶梯计划</h4>
       <p class="tech-desc">
-        将人类大脑送入太空的计划。云天明的大脑被送往三体舰队，为人类带回了至关重要的情报。
+        将人类大脑送入太空的计划。云天明的大脑被送往三体舰队。
       </p>
     </div>
   </div>
@@ -1216,10 +1011,7 @@ footer {
     <p>
       宇宙就是一座<span class="highlight">黑暗森林</span>，<br>
       每个文明都是带枪的猎人，<br>
-      像幽灵般潜行于林间，<br>
-      轻轻拨开挡路的树枝，<br>
-      竭力不让脚步发出一点儿声音，<br>
-      连呼吸都必须小心翼翼...
+      像幽灵般潜行于林间...
     </p>
     <cite>—— 黑暗森林法则 · 宇宙社会学基本定理</cite>
   </blockquote>
@@ -1260,12 +1052,19 @@ footer {
 </footer>
 
 <script>
-document.querySelectorAll('nav a, .footer-links a').forEach(function(anchor) {
+function toggleMenu() {
+  document.querySelector('.menu-btn').classList.toggle('active');
+  document.getElementById('mobileNav').classList.toggle('active');
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
   anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    var target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+    if (this.getAttribute('href') !== '#') {
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   });
 });
@@ -1285,7 +1084,7 @@ function updateCountdown() {
     String(hours).padStart(2,'0') + ':' + 
     String(minutes).padStart(2,'0') + ':' + 
     String(seconds).padStart(2,'0');
-  document.querySelector('.countdown-time').textContent = timeString;
+  document.getElementById('countdown').textContent = timeString;
 }
 
 setInterval(updateCountdown, 1000);
