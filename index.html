@@ -6,8 +6,7 @@
   <title>鍦扮悆鎶垫姉缁勭粐 | Earth Resistance Organization [ETO COUNTER]</title>
   <meta name="description" content="闈㈠涓変綋鏂囨槑鐨勫叆渚碉紝浜虹被姘镐笉灞堟湇銆傚嵄鏈虹邯鍏冨畼鏂规姷鎶楃粍缁囩珯鐐广€?>
   
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <!-- No external fonts - use system defaults for mobile compatibility -->
   
   <style>
     :root {
@@ -38,7 +37,7 @@
     }
     
     body {
-      font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', 'WenQuanYi Micro Hei', sans-serif;
+      font-family: sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
       line-height: 1.8;
@@ -47,14 +46,10 @@
       -moz-osx-font-smoothing: grayscale;
     }
     
-    /* Chinese headings with Noto Serif SC if available */
-    h1, h2, h3, h4, .section-title, .book-title, .faction-name, .wallfacer-name, .tech-name, .join-title {
-      font-family: 'Noto Serif SC', 'PingFang SC', 'Microsoft YaHei', 'Source Han Serif SC', serif;
-    }
-    
-    /* Ensure all Chinese text uses Chinese fonts */
+    /* All text uses default system fonts */
+    h1, h2, h3, h4, .section-title, .book-title, .faction-name, .wallfacer-name, .tech-name, .join-title,
     .hero-quote, .hero-subtitle, .footer-quote, .book-desc, .faction-desc, .tech-desc, p, span, a, li {
-      font-family: inherit;
+      font-family: sans-serif;
     }
     
     /* Enhanced CRT Effect */
@@ -102,15 +97,12 @@
     }
     
     .mono { 
-      font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Courier New', 'Microsoft YaHei', monospace; 
+      font-family: monospace; 
     }
     .sci-fi { 
-      font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif; 
-    }
-    
-    /* Force Chinese characters to use Chinese fonts in mono contexts */
-    .mono:lang(zh), .mono *:lang(zh) {
-      font-family: 'PingFang SC', 'Microsoft YaHei', 'SF Mono', monospace;
+      font-family: sans-serif;
+      font-weight: bold;
+      letter-spacing: 0.1em;
     }
     
     /* Header */
@@ -439,7 +431,7 @@
     
     .terminal-body {
       padding: 2rem;
-      font-family: 'SF Mono', 'Monaco', 'Courier New', 'Microsoft YaHei', monospace;
+      font-family: monospace;
       font-size: 0.95rem;
       line-height: 1.7;
     }
@@ -1115,7 +1107,7 @@
         font-size: 0.75rem;
         padding: 1rem;
         line-height: 1.6;
-        font-family: 'SF Mono', 'Monaco', 'Courier New', 'Microsoft YaHei', monospace;
+        font-family: monospace;
       }
       
       .terminal-line {
@@ -1202,23 +1194,11 @@
       
       .terminal-body {
         font-size: 0.65rem;
-        font-family: 'SF Mono', 'Monaco', 'Courier New', 'Microsoft YaHei', monospace;
+        font-family: monospace;
       }
       
       nav a {
         font-size: 0.6rem;
-      }
-    }
-    
-    /* Font loading fix for mobile */
-    @media (max-width: 768px) {
-      /* Ensure Chinese fonts are available */
-      body {
-        font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif !important;
-      }
-      
-      h1, h2, h3, h4, .section-title, .book-title, .faction-name, .wallfacer-name, .tech-name, .join-title {
-        font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', serif !important;
       }
     }
   </style>
