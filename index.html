@@ -6,17 +6,10 @@
   <title>鍦扮悆鎶垫姉缁勭粐 | Earth Resistance Organization [ETO COUNTER]</title>
   <meta name="description" content="闈㈠涓変綋鏂囨槑鐨勫叆渚碉紝浜虹被姘镐笉灞堟湇銆傚嵄鏈虹邯鍏冨畼鏂规姷鎶楃粍缁囩珯鐐广€?>
   
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  
-  <!-- Mobile font fix -->
-  <style>
-    @font-face {
-      font-family: 'Noto Serif SC';
-      font-display: swap;
-    }
-  </style>
+  <!-- Chinese font for mobile compatibility -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -47,13 +40,18 @@
     }
     
     body {
-      font-family: 'Noto Serif SC', 'PingFang SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
       line-height: 1.8;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Use Noto Serif SC for Chinese text only */
+    h1, h2, h3, h4, .section-title, .book-title, .faction-name, .wallfacer-name, .tech-name, .join-title, .hero-quote, .hero-subtitle, .footer-quote {
+      font-family: 'Noto Serif SC', 'PingFang SC', 'Microsoft YaHei', serif;
     }
     
     /* Enhanced CRT Effect */
@@ -100,8 +98,8 @@
       100% { transform: translateY(100vh); }
     }
     
-    .mono { font-family: 'Share Tech Mono', 'Courier New', 'SimSun', monospace; }
-    .sci-fi { font-family: 'Orbitron', 'Arial Black', sans-serif; }
+    .mono { font-family: 'Share Tech Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Courier New', monospace; }
+    .sci-fi { font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif; }
     
     /* Header */
     header {
@@ -291,14 +289,13 @@
     }
     
     .hero h1 {
-      font-size: clamp(2.8rem, 9vw, 6rem);
+      font-size: clamp(2rem, 8vw, 5rem);
       font-weight: 700;
-      letter-spacing: 0.35em;
+      letter-spacing: 0.2em;
       margin-bottom: 1.5rem;
-      text-shadow: 
+      text-shadow:
         0 0 40px var(--glow-red),
         0 0 80px rgba(255,42,42,0.3);
-      text-indent: 0.35em;
     }
     
     .hero h1 .highlight {
