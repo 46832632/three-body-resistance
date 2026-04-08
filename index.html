@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>鍦扮悆鎶垫姉缁勭粐 | Earth Resistance Organization</title>
+  <meta name="description" content="闈㈠涓変綋鏂囨槑鐨勫叆渚碉紝浜虹被姘镐笉灞堟湇">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #111118;
+      --bg-terminal: #0d1117;
+      --text-primary: #e6e6e6;
+      --text-dim: #6b7280;
+      --accent-red: #dc2626;
+      --accent-green: #22c55e;
+      --accent-amber: #f59e0b;
+      --accent-cyan: #06b6d4;
+      --border-color: #27272a;
+      --glow-red: rgba(220, 38, 38, 0.5);
+      --glow-green: rgba(34, 197, 94, 0.5);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Noto Serif SC', serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+    
+    /* CRT Scanline Effect */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.3;
+    }
+    
+    /* Noise Texture */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.03;
+    }
+    
+    /* Monospace font for tech elements */
+    .mono {
+      font-family: 'Share Tech Mono', monospace;
+    }
+    
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--accent-red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: pulse 2s infinite;
+    }
+    
+    .logo-icon::before {
+      content: '鈿?;
+      font-size: 1.2rem;
+      color: var(--accent-red);
+    }
+    
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 var(--glow-red); }
+      50% { box-shadow: 0 0 20px 5px var(--glow-red); }
+    }
+    
+    .logo-text {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+    }
+    
+    .logo-text span {
+      color: var(--accent-red);
+    }
+    
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.8rem;
+    }
+    
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      animation: blink 1s infinite;
+    }
+    
+    .status-dot.active {
+      background: var(--accent-green);
+      box-shadow: 0 0 10px var(--accent-green);
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    /* Navigation */
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    nav a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    nav a:hover {
+      color: var(--text-primary);
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-red);
+      transition: width 0.3s;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--glow-red) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      opacity: 0.3;
+      animation: breathe 4s ease-in-out infinite;
+    }
+    
+    @keyframes breathe {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.5; }
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(220, 38, 38, 0.1);
+      border: 1px solid var(--accent-red);
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: var(--accent-red);
+      letter-spacing: 0.15em;
+      margin-bottom: 2rem;
+      animation: flicker 3s infinite;
+    }
+    
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+      52% { opacity: 0.3; }
+      54% { opacity: 1; }
+    }
+    
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 40px var(--glow-red);
+    }
+    
+    .hero h1 .highlight {
+      color: var(--accent-red);
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-dim);
+      letter-spacing: 0.4em;
+      margin-bottom: 3rem;
+    }
+    
+    .hero-quote {
+      max-width: 600px;
+      font-size: 1rem;
+      color: var(--text-dim);
+      font-style: italic;
+      border-left: 3px solid var(--accent-red);
+      padding-left: 1.5rem;
+      text-align: left;
+    }
+    
+    .hero-quote .author {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+    
+    .scroll-hint {
+      position: absolute;
+      bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+    
+    /* Terminal Section */
+    .terminal-section {
+      padding: 6rem 2rem;
+      background: var(--bg-secondary);
+    }
+    
+    .terminal {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--bg-terminal);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+    
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .terminal-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    
+    .terminal-btn.red { background: #ff5f56; }
+    .terminal-btn.yellow { background: #ffbd2e; }
+    .terminal-btn.green { background: #27c93f; }
+    
+    .terminal-title {
+      margin-left: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+    
+    .terminal-body {
+      padding: 1.5rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    
+    .terminal-line {
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: typeIn 0.5s forwards;
+    }
+    
+    .terminal-line:nth-child(1) { animation-delay: 0.2s; }
+    .terminal-line:nth-child(2) { animation-delay: 0.8s; }
+    .terminal-line:nth-child(3) { animation-delay: 1.4s; }
+    .terminal-line:nth-child(4) { animation-delay: 2s; }
+    .terminal-line:nth-child(5) { animation-delay: 2.6s; }
+    .terminal-line:nth-child(6) { animation-delay: 3.2s; }
+    .terminal-line:nth-child(7) { animation-delay: 3.8s; }
+    .terminal-line:nth-child(8) { animation-delay: 4.4s; }
+    
+    @keyframes typeIn {
+      to { opacity: 1; }
+    }
+    
+    .terminal-prompt {
+      color: var(--accent-green);
+    }
+    
+    .terminal-command {
+      color: var(--text-primary);
+    }
+    
+    .terminal-output {
+      color: var(--text-dim);
+      padding-left: 1.5rem;
+    }
+    
+    .terminal-warning {
+      color: var(--accent-amber);
+    }
+    
+    .terminal-error {
+      color: var(--accent-red);
+    }
+    
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 1.2em;
+      background: var(--accent-green);
+      animation: cursor 1s infinite;
+      vertical-align: middle;
+    }
+    
+    @keyframes cursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    
+    /* Content Sections */
+    section {
+      padding: 5rem 2rem;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .section-label {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: rgba(220, 38, 38, 0.1);
+      border: 1px solid var(--accent-red);
+      color: var(--accent-red);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+    }
+    
+    .section-desc {
+      color: var(--text-dim);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Three Body Problem Cards */
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .book-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .book-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-red), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    
+    .book-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .book-card:hover {
+      border-color: var(--accent-red);
+      transform: translateY(-5px);
+    }
+    
+    .book-number {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 3rem;
+      color: var(--accent-red);
+      opacity: 0.3;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+    }
+    
+    .book-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.1em;
+    }
+    
+    .book-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+    }
+    
+    .book-desc {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    
+    /* Factions Section */
+    .factions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .faction-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+    
+    .faction-card.eto {
+      border-left: 4px solid var(--accent-red);
+    }
+    
+    .faction-card.resistance {
+      border-left: 4px solid var(--accent-green);
+    }
+    
+    .faction-card.pdc {
+      border-left: 4px solid var(--accent-cyan);
+    }
+    
+    .faction-card:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    
+    .faction-name {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .faction-status {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .faction-status.hostile {
+      background: rgba(220, 38, 38, 0.2);
+      color: var(--accent-red);
+    }
+    
+    .faction-status.friendly {
+      background: rgba(34, 197, 94, 0.2);
+      color: var(--accent-green);
+    }
+    
+    .faction-status.neutral {
+      background: rgba(6, 182, 212, 0.2);
+      color: var(--accent-cyan);
+    }
+    
+    .faction-desc {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+    
+    /* Wallfacer Section */
+    .wallfacer-section {
+      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    }
+    
+    .wallfacer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    
+    .wallfacer-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s;
+    }
+    
+    .wallfacer-card::after {
+      content: '鈻?;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 0.8rem;
+      color: var(--accent-amber);
+      animation: blink 2s infinite;
+    }
+    
+    .wallfacer-card:hover {
+      border-color: var(--accent-amber);
+    }
+    
+    .wallfacer-avatar {
+      width: 80px;
+      height: 80px;
+      border: 2px solid var(--border-color);
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+    
+    .wallfacer-name {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .wallfacer-title {
+      font-size: 0.8rem;
+      color: var(--accent-amber);
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+    }
+    
+    .wallfacer-strategy {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+    
+    /* Dark Forest Quote */
+    .dark-forest-quote {
+      padding: 6rem 2rem;
+      text-align: center;
+      background: var(--bg-secondary);
+      position: relative;
+    }
+    
+    .dark-forest-quote::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at center, rgba(220, 38, 38, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    
+    .dark-forest-quote blockquote {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .dark-forest-quote p {
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.1em;
+    }
+    
+    .dark-forest-quote .highlight {
+      color: var(--accent-red);
+      font-weight: 600;
+    }
+    
+    .dark-forest-quote cite {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+    }
+    
+    /* Join Section */
+    .join-section {
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    
+    .join-box {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 3rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      position: relative;
+    }
+    
+    .join-box::before {
+      content: 'TOP SECRET';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-primary);
+      padding: 0.3rem 1rem;
+      border: 1px solid var(--accent-red);
+      color: var(--accent-red);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+    }
+    
+    .join-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.2em;
+    }
+    
+    .join-desc {
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+    }
+    
+    .join-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      border: 2px solid var(--accent-red);
+      color: var(--accent-red);
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    
+    .join-btn:hover {
+      background: var(--accent-red);
+      color: var(--bg-primary);
+      box-shadow: 0 0 30px var(--glow-red);
+    }
+    
+    /* Footer */
+    footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+    }
+    
+    .footer-warning {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(220, 38, 38, 0.1);
+      border: 1px solid var(--accent-red);
+      color: var(--accent-red);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-text {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+    }
+    
+    .footer-quote {
+      margin-top: 1rem;
+      font-style: italic;
+      color: var(--text-dim);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      nav {
+        gap: 1rem;
+      }
+      
+      .hero h1 {
+        letter-spacing: 0.15em;
+      }
+      
+      .terminal-body {
+        font-size: 0.8rem;
+        padding: 1rem;
+      }
+      
+      .books-grid,
+      .factions-grid,
+      .wallfacer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">鍦扮悆<span>鎶垫姉</span>缁勭粐</div>
+    </div>
+    
+    <nav>
+      <a href="#about">鍏充簬缁勭粐</a>
+      <a href="#books">涓夐儴鍏ㄥ彶</a>
+      <a href="#factions">鍔垮姏鍒嗗竷</a>
+      <a href="#wallfacer">闈㈠璁″垝</a>
+    </nav>
+    
+    <div class="status-bar mono">
+      <div class="status-item">
+        <span class="status-dot active"></span>
+        <span>缃戠粶鍦ㄧ嚎</span>
+      </div>
+      <div class="status-item">
+        <span>鍗辨満绾厓: 205</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="about">
+    <div class="hero-badge mono">
+      <span>鈿?/span>
+      <span>鍔犲瘑棰戦亾 - 浠呴檺浜虹被璁块棶</span>
+    </div>
+    
+    <h1>缁欏瞾鏈堜互<span class="highlight">鏂囨槑</span></h1>
+    <p class="hero-subtitle">鑰屼笉鏄粰鏂囨槑浠ュ瞾鏈?/p>
+    
+    <blockquote class="hero-quote">
+      "寮卞皬鍜屾棤鐭ヤ笉鏄敓瀛樼殑闅滅锛屽偛鎱㈡墠鏄€傞潰瀵逛笁浣撴枃鏄庣殑鍏ヤ镜锛屾垜浠案涓嶅眻鏈嶃€?
+      <span class="author">鈥斺€?鍦扮悆鎶垫姉缁勭粐瀹ｈ█</span>
+    </blockquote>
+    
+    <div class="scroll-hint mono">
+      <span>[ 鍚戜笅婊氬姩鏌ョ湅鎯呮姤 ]</span>
+      <span>鈫?/span>
+    </div>
+  </section>
+
+  <!-- Terminal Section -->
+  <section class="terminal-section">
+    <div class="terminal">
+      <div class="terminal-header">
+        <span class="terminal-btn red"></span>
+        <span class="terminal-btn yellow"></span>
+        <span class="terminal-btn green"></span>
+        <span class="terminal-title mono">resistance-terminal 鈥?鍗辨満绾厓205骞?/span>
+      </div>
+      <div class="terminal-body mono">
+        <div class="terminal-line">
+          <span class="terminal-prompt">$</span>
+          <span class="terminal-command"> cat three_body_intelligence.txt</span>
+        </div>
+        <div class="terminal-line terminal-output">
+          姝ｅ湪瑙ｅ瘑涓変綋鏂囨槑鎯呮姤妗ｆ...
+        </div>
+        <div class="terminal-line">
+          <span class="terminal-prompt">$</span>
+          <span class="terminal-command"> ./analyze_threat.sh</span>
+        </div>
+        <div class="terminal-line terminal-warning">
+          [璀﹀憡] 妫€娴嬪埌鏅哄瓙鐩戞帶娲诲姩
+        </div>
+        <div class="terminal-line terminal-output">
+          濞佽儊绛夌骇: 鏋侀珮 | 鍏ヤ镜鍊掕鏃? 400骞?        </div>
+        <div class="terminal-line">
+          <span class="terminal-prompt">$</span>
+          <span class="terminal-command"> ./resistance_status.sh</span>
+        </div>
+        <div class="terminal-line terminal-output">
+          鎶垫姉缁勭粐娲昏穬鎴愬憳: 鈻堚枅鈻堚枅鈻堚枅鈻?| 鍩哄湴鏁伴噺: 鈻堚枅鈻堚枅
+        </div>
+        <div class="terminal-line">
+          <span class="terminal-prompt">$</span>
+          <span class="terminal-command"> echo "浜虹被蹇呰儨"</span>
+          <span class="cursor"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Books Section -->
+  <section id="books">
+    <div class="section-header">
+      <span class="section-label mono">ARCHIVE</span>
+      <h2 class="section-title">涓変綋鍏ㄥ彶</h2>
+      <p class="section-desc">鍒樻厛娆ｇ骞诲法钁椾笁閮ㄦ洸锛岃褰曚汉绫讳笌涓変綋鏂囨槑鐨勫彶璇楀鍐?/p>
+    </div>
+    
+    <div class="books-grid">
+      <div class="book-card">
+        <span class="book-number mono">01</span>
+        <h3 class="book-title">涓変綋</h3>
+        <p class="book-subtitle">鍦扮悆寰€浜?路 鏂囧寲澶ч潻鍛?/p>
+        <p class="book-desc">
+          绉戝瀹跺彾鏂囨磥鍦ㄧ粷鏈涗腑鍚戝畤瀹欏彂鍑轰俊鍙凤紝鎰忓鑱旂郴涓婁笁浣撴枃鏄庛€備汉绫绘枃鏄庨娆￠潰瀵瑰鏄熸櫤鎱х敓鍛界殑濞佽儊锛屼竴鍒囦粠杩欓噷寮€濮?..
+        </p>
+      </div>
+      
+      <div class="book-card">
+        <span class="book-number mono">02</span>
+        <h3 class="book-title">榛戞殫妫灄</h3>
+        <p class="book-subtitle">瀹囧畽绀句細瀛?路 闈㈠璁″垝</p>
+        <p class="book-desc">
+          闈㈠涓変綋鑸伴槦鐨勫叆渚碉紝浜虹被鍚姩闈㈠璁″垝銆傜綏杈戦鎮熷畤瀹欓粦鏆楁．鏋楁硶鍒欙紝浠ュ悓褰掍簬灏界浉濞佽儊锛屾殏鏃堕樆姝簡涓変綋鍏ヤ镜...
+        </p>
+      </div>
+      
+      <div class="book-card">
+        <span class="book-number mono">03</span>
+        <h3 class="book-title">姝荤姘哥敓</h3>
+        <p class="book-subtitle">闄嶇淮鎵撳嚮 路 瀹囧畽缁堢粨</p>
+        <p class="book-desc">
+          濞佹厬澶辨晥鍚庯紝浜虹被琚揩杩佺Щ鑷虫境澶у埄浜氥€傜▼蹇冩墽鍓戝け璐ワ紝澶槼绯昏浜岀淮鍖栥€傚敮鏈夐€冪澶槼绯荤殑鏄熻埌鏂囨槑寤剁画浜虹被鐏...
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Factions Section -->
+  <section id="factions">
+    <div class="section-header">
+      <span class="section-label mono">FACTIONS</span>
+      <h2 class="section-title">鍔垮姏鍒嗗竷</h2>
+      <p class="section-desc">鍗辨満绾厓涓殑涓昏浜虹被缁勭粐</p>
+    </div>
+    
+    <div class="factions-grid">
+      <div class="faction-card eto">
+        <h4 class="faction-name">
+          鍦扮悆涓変綋缁勭粐 (ETO)
+          <span class="faction-status hostile">鏁屽</span>
+        </h4>
+        <p class="faction-desc">
+          鐢卞彾鏂囨磥鍒涚珛锛屼俊濂変笁浣撴枃鏄庯紝瑙嗕汉绫讳负缃伓鐗╃銆傚垎涓洪檷涓存淳銆佹嫰鏁戞淳銆佸垢瀛樻淳銆傚凡琚仈鍚堝浗鍒椾负鎭愭€栫粍缁囥€?        </p>
+      </div>
+      
+      <div class="faction-card resistance">
+        <h4 class="faction-name">
+          鍦扮悆鎶垫姉缁勭粐
+          <span class="faction-status friendly">鍙嬪啗</span>
+        </h4>
+        <p class="faction-desc">
+          绉樺瘑鎶垫姉涓変綋鍏ヤ镜鐨勫湴涓嬬粍缁囷紝鐢辩綏杈戙€佺珷鍖楁捣绛夐琚栭瀵笺€傝嚧鍔涗簬淇濇姢浜虹被鏂囨槑锛屾墽琛岄潰澹佽鍒掍笌闃舵璁″垝銆?        </p>
+      </div>
+      
+      <div class="faction-card pdc">
+        <h4 class="faction-name">
+          琛屾槦闃插尽鐞嗕簨浼?(PDC)
+          <span class="faction-status neutral">涓珛</span>
+        </h4>
+        <p class="faction-desc">
+          鑱斿悎鍥戒笅灞炴満鏋勶紝璐熻矗鍗忚皟鍏ㄧ悆闃插尽涓変綋鍏ヤ镜銆傚惎鍔ㄩ潰澹佽鍒掋€侀樁姊鍒掋€佹帺浣撹鍒掔瓑閲嶅ぇ宸ョ▼銆?        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wallfacer Section -->
+  <section class="wallfacer-section" id="wallfacer">
+    <div class="section-header">
+      <span class="section-label mono">WALLFACER PROJECT</span>
+      <h2 class="section-title">闈㈠璁″垝</h2>
+      <p class="section-desc">鍥涗綅闈㈠鑰呯殑缁堟瀬鎴樼暐</p>
+    </div>
+    
+    <div class="wallfacer-grid">
+      <div class="wallfacer-card">
+        <div class="wallfacer-avatar">馃幁</div>
+        <h4 class="wallfacer-name">寮楅噷寰烽噷鍏嬄锋嘲鍕?/h4>
+        <p class="wallfacer-title">绗竴浣嶉潰澹佽€?/p>
+        <p class="wallfacer-strategy">"閲忓瓙骞界伒鑸伴槦璁″垝"</p>
+      </div>
+      
+      <div class="wallfacer-card">
+        <div class="wallfacer-avatar">鈿旓笍</div>
+        <h4 class="wallfacer-name">鏇煎姫灏斅烽浄杩簹鍏?/h4>
+        <p class="wallfacer-title">绗簩浣嶉潰澹佽€?/p>
+        <p class="wallfacer-strategy">"姘存槦鍧犺惤璁″垝"</p>
+      </div>
+      
+      <div class="wallfacer-card">
+        <div class="wallfacer-avatar">馃</div>
+        <h4 class="wallfacer-name">姣斿皵路甯屾仼鏂?/h4>
+        <p class="wallfacer-title">绗笁浣嶉潰澹佽€?/p>
+        <p class="wallfacer-strategy">"鎬濇兂閽㈠嵃璁″垝"</p>
+      </div>
+      
+      <div class="wallfacer-card">
+        <div class="wallfacer-avatar">猸?/div>
+        <h4 class="wallfacer-name">缃楄緫</h4>
+        <p class="wallfacer-title">绗洓浣嶉潰澹佽€?/p>
+        <p class="wallfacer-strategy">"榛戞殫妫灄濞佹厬"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dark Forest Quote -->
+  <section class="dark-forest-quote">
+    <blockquote>
+      <p>
+        "瀹囧畽灏辨槸涓€搴?span class="highlight">榛戞殫妫灄</span>锛?br>
+        姣忎釜鏂囨槑閮芥槸甯︽灙鐨勭寧浜猴紝<br>
+        鍍忓菇鐏佃埇娼滆浜庢灄闂达紝<br>
+        杞昏交鎷ㄥ紑鎸¤矾鐨勬爲鏋濓紝<br>
+        绔姏涓嶈鑴氭鍙戝嚭涓€鐐瑰効澹伴煶锛?br>
+        杩炲懠鍚搁兘蹇呴』灏忓績缈肩考..."
+      </p>
+      <cite>鈥斺€?銆婇粦鏆楁．鏋椼€?/cite>
+    </blockquote>
+  </section>
+
+  <!-- Join Section -->
+  <section class="join-section">
+    <div class="join-box">
+      <h3 class="join-title">鍔犲叆鎶垫姉缁勭粐</h3>
+      <p class="join-desc">
+        闈㈠涓変綋鏂囨槑鐨勫叆渚碉紝浜虹被闇€瑕佹瘡涓€涓垬澹€?br>
+        浣犵殑鍔犲叆锛屽皢鏄枃鏄庡欢缁殑甯屾湜銆?      </p>
+      <a href="#" class="join-btn mono">
+        <span>猬?/span>
+        <span>绔嬪嵆鍔犲叆</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-warning mono">
+      <span>鈿?/span>
+      <span>鏈珯鐐瑰彈鏅哄瓙鐩戞帶锛岃浣跨敤鍔犲瘑杩炴帴</span>
+    </div>
+    <p class="footer-text mono">
+      鍦扮悆鎶垫姉缁勭粐 漏 鍗辨満绾厓205骞?| 缁欏瞾鏈堜互鏂囨槑
+    </p>
+    <p class="footer-quote">
+      "鎴戜滑閮芥槸闃存矡閲岀殑铏瓙锛屼絾鎬昏繕鏄緱鏈変汉浠版湜鏄熺┖銆?
+    </p>
+  </footer>
+
+  <script>
+    // Typing effect for terminal
+    const terminalLines = document.querySelectorAll('.terminal-line');
+    
+    // Smooth scroll for navigation
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+    
+    // Parallax effect for hero
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+      }
+    });
+  </script>
+</body>
+</html>
