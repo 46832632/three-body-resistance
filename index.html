@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>地球抵抗组织 | Earth Resistance</title>
+<title>地球抵抗组织 | Earth Resistance Organization</title>
+<meta name="description" content="面对三体文明入侵，人类最后的希望。加入抵抗组织，为文明而战。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
@@ -35,7 +36,6 @@ body {
   overflow-x: hidden;
 }
 
-/* CRT Scanline Effect */
 body::before {
   content: '';
   position: fixed;
@@ -54,7 +54,6 @@ body::before {
   z-index: 9999;
 }
 
-/* Noise Texture */
 body::after {
   content: '';
   position: fixed;
@@ -68,7 +67,6 @@ body::after {
   z-index: 9998;
 }
 
-/* Header */
 header {
   position: fixed;
   top: 0;
@@ -159,7 +157,6 @@ nav a:hover::after {
   width: 100%;
 }
 
-/* Hero Section */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -188,20 +185,26 @@ nav a:hover::after {
   pointer-events: none;
 }
 
-.hero-badge {
+.alert-banner {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.7rem 1.4rem;
-  background: rgba(255, 42, 42, 0.08);
+  gap: 0.8rem;
+  padding: 0.8rem 1.6rem;
+  background: rgba(255, 42, 42, 0.1);
   border: 1px solid var(--accent-red);
   border-radius: 4px;
   font-family: 'Share Tech Mono', monospace;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--accent-red);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   margin-bottom: 3rem;
   animation: flicker 3s infinite;
+}
+
+.alert-banner::before {
+  content: '!';
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 @keyframes flicker {
@@ -246,7 +249,7 @@ nav a:hover::after {
 
 .hero-quote {
   max-width: 700px;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   color: var(--text-secondary);
   font-style: italic;
   border-left: 3px solid var(--accent-red);
@@ -258,7 +261,7 @@ nav a:hover::after {
 }
 
 .hero-quote::before {
-  content: '"';
+  content: '';
   position: absolute;
   left: -0.5rem;
   top: -1rem;
@@ -317,7 +320,6 @@ nav a:hover::after {
   text-shadow: var(--glow-red);
 }
 
-/* Section Styles */
 section {
   padding: 6rem 2rem;
   position: relative;
@@ -356,14 +358,13 @@ section {
   line-height: 2;
 }
 
-/* Books Section */
-.books-section {
+.history-section {
   background:
     radial-gradient(ellipse at 10% 50%, rgba(184, 41, 221, 0.06) 0%, transparent 50%),
     var(--bg-secondary);
 }
 
-.books-grid {
+.history-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   gap: 2.5rem;
@@ -371,7 +372,7 @@ section {
   margin: 0 auto;
 }
 
-.book-card {
+.history-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -381,7 +382,7 @@ section {
   overflow: hidden;
 }
 
-.book-card::before {
+.history-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -393,17 +394,17 @@ section {
   transition: transform 0.4s;
 }
 
-.book-card:hover {
+.history-card:hover {
   border-color: rgba(255, 42, 42, 0.3);
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-.book-card:hover::before {
+.history-card:hover::before {
   transform: scaleX(1);
 }
 
-.book-number {
+.era-number {
   font-family: 'Share Tech Mono', monospace;
   font-size: 4rem;
   color: var(--accent-red);
@@ -414,14 +415,14 @@ section {
   font-weight: bold;
 }
 
-.book-title {
+.era-title {
   font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 0.8rem;
   letter-spacing: 0.15em;
 }
 
-.book-subtitle {
+.era-period {
   font-size: 0.9rem;
   color: var(--accent-cyan);
   letter-spacing: 0.15em;
@@ -429,13 +430,12 @@ section {
   font-family: 'Share Tech Mono', monospace;
 }
 
-.book-desc {
+.era-desc {
   font-size: 1rem;
   color: var(--text-secondary);
   line-height: 2;
 }
 
-/* Factions Section */
 .factions-section {
   background: var(--bg-primary);
 }
@@ -457,9 +457,9 @@ section {
   transition: all 0.3s;
 }
 
-.faction-card.eto { border-left: 4px solid var(--accent-red); }
-.faction-card.resistance { border-left: 4px solid var(--accent-green); }
-.faction-card.pdc { border-left: 4px solid var(--accent-cyan); }
+.faction-card.enemy { border-left: 4px solid var(--accent-red); }
+.faction-card.ally { border-left: 4px solid var(--accent-green); }
+.faction-card.neutral { border-left: 4px solid var(--accent-cyan); }
 
 .faction-card:hover {
   transform: translateX(8px);
@@ -485,13 +485,13 @@ section {
   font-weight: bold;
 }
 
-.faction-status.hostile {
+.faction-status.enemy {
   background: rgba(255, 42, 42, 0.12);
   color: var(--accent-red);
   border: 1px solid rgba(255, 42, 42, 0.3);
 }
 
-.faction-status.friendly {
+.faction-status.ally {
   background: rgba(0, 255, 65, 0.1);
   color: var(--accent-green);
   border: 1px solid rgba(0, 255, 65, 0.3);
@@ -509,7 +509,6 @@ section {
   line-height: 2;
 }
 
-/* Wallfacer Section */
 .wallfacer-section {
   background:
     radial-gradient(ellipse at 90% 50%, rgba(255, 176, 0, 0.06) 0%, transparent 50%),
@@ -587,7 +586,6 @@ section {
   line-height: 1.8;
 }
 
-/* Tech Section */
 .tech-section {
   background: var(--bg-primary);
 }
@@ -652,7 +650,6 @@ section {
   line-height: 1.9;
 }
 
-/* Dark Forest Quote */
 .dark-forest-section {
   padding: 8rem 2rem;
   text-align: center;
@@ -703,7 +700,6 @@ section {
   font-family: 'Share Tech Mono', monospace;
 }
 
-/* Join Section */
 .join-section {
   padding: 8rem 2rem;
   text-align: center;
@@ -797,7 +793,6 @@ section {
   left: 0;
 }
 
-/* Footer */
 footer {
   padding: 5rem 2rem;
   border-top: 1px solid var(--border);
@@ -872,7 +867,6 @@ footer {
   width: 100%;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   header {
     padding: 1rem;
@@ -931,7 +925,7 @@ footer {
     letter-spacing: 0.15em;
   }
   
-  .books-grid,
+  .history-grid,
   .factions-grid,
   .wallfacer-grid,
   .tech-grid {
@@ -940,14 +934,14 @@ footer {
     padding: 0 0.5rem;
   }
   
-  .book-card,
+  .history-card,
   .faction-card,
   .wallfacer-card,
   .tech-card {
     padding: 2rem 1.5rem;
   }
   
-  .book-number {
+  .era-number {
     font-size: 3rem;
   }
   
@@ -976,7 +970,6 @@ footer {
   }
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -1004,7 +997,7 @@ footer {
   </div>
   <nav>
     <a href="#about">关于组织</a>
-    <a href="#books">三部全史</a>
+    <a href="#history">危机全史</a>
     <a href="#factions">势力分布</a>
     <a href="#wallfacer">面壁计划</a>
     <a href="#tech">科技档案</a>
@@ -1012,9 +1005,8 @@ footer {
 </header>
 
 <section class="hero" id="about">
-  <div class="hero-badge">
-    <span>!</span>
-    <span>加密频道 - 仅限人类访问</span>
+  <div class="alert-banner">
+    加密频道 - 仅限人类访问 - 智子监控中
   </div>
   
   <h1>给岁月以<span class="highlight">文明</span></h1>
@@ -1031,40 +1023,40 @@ footer {
   </div>
 </section>
 
-<section class="books-section" id="books">
+<section class="history-section" id="history">
   <div class="section-header">
-    <span class="section-label">ARCHIVE</span>
-    <h2 class="section-title">三体全史</h2>
+    <span class="section-label">CRISIS CHRONICLE</span>
+    <h2 class="section-title">危机全史</h2>
     <p class="section-desc">
-      刘慈欣科幻巨著三部曲，记录人类文明与三体文明的史诗级对决。<br>
-      从红岸基地的第一声呼唤，到太阳系的二维化终结。
+      从红岸基地的第一声呼唤，到黑暗森林威慑的建立，<br>
+      人类文明在毁灭边缘挣扎求生的史诗历程。
     </p>
   </div>
   
-  <div class="books-grid">
-    <div class="book-card">
-      <span class="book-number">01</span>
-      <h3 class="book-title">三体</h3>
-      <p class="book-subtitle">地球往事 · 文化大革命 · 红岸基地</p>
-      <p class="book-desc">
-        1967年，清华大学物理系学生叶文洁在父亲被批斗致死后，对人类彻底绝望。她被调入绝密的红岸基地，向外太空发出地球文明的第一声呼唤。四光年外，三体世界接收到了这条信息。三颗无规则运行的太阳，让三体文明在毁灭与重生中轮回183次。他们决定：入侵地球。
+  <div class="history-grid">
+    <div class="history-card">
+      <span class="era-number">01</span>
+      <h3 class="era-title">危机纪元前</h3>
+      <p class="era-period">1967 - 201X年</p>
+      <p class="era-desc">
+        清华大学物理系学生叶文洁在父亲被批斗致死后，对人类彻底绝望。她被调入绝密的红岸基地，向外太空发出地球文明的第一声呼唤。四光年外，三体世界接收到了这条信息。三颗无规则运行的太阳，让三体文明在毁灭与重生中轮回183次。他们决定：入侵地球。
       </p>
     </div>
     
-    <div class="book-card">
-      <span class="book-number">02</span>
-      <h3 class="book-title">黑暗森林</h3>
-      <p class="book-subtitle">宇宙社会学 · 面壁计划 · 黑暗森林法则</p>
-      <p class="book-desc">
+    <div class="history-card">
+      <span class="era-number">02</span>
+      <h3 class="era-title">危机纪元</h3>
+      <p class="era-period">201X - 2208年</p>
+      <p class="era-desc">
         面对三体舰队的入侵，人类启动面壁计划，选出四位面壁者制定秘密战略。罗辑，一个玩世不恭的社会学博士，被三体文明点名追杀。在叶文洁的启发下，他领悟了宇宙的黑暗森林法则：每个文明都是带枪的猎人，暴露即毁灭。他以同归于尽相威胁，建立了对三体世界的黑暗森林威慑。
       </p>
     </div>
     
-    <div class="book-card">
-      <span class="book-number">03</span>
-      <h3 class="book-title">死神永生</h3>
-      <p class="book-subtitle">降维打击 · 二维化 · 宇宙终结</p>
-      <p class="book-desc">
+    <div class="history-card">
+      <span class="era-number">03</span>
+      <h3 class="era-title">威慑纪元</h3>
+      <p class="era-period">2208 - 2270年</p>
+      <p class="era-desc">
         威慑纪元62年，执剑人程心接替罗辑。威慑失败，三体世界摧毁了地球上的引力波发射台，人类被迫全部迁移至澳大利亚。随后，隐藏在太阳系的歌者文明投掷了二向箔，整个太阳系被二维化。程心乘坐曲率驱动飞船逃离，成为人类文明的最后见证者。宇宙的终点，是死神永生。
       </p>
     </div>
@@ -1079,27 +1071,27 @@ footer {
   </div>
   
   <div class="factions-grid">
-    <div class="faction-card eto">
+    <div class="faction-card enemy">
       <h4 class="faction-name">
         地球三体组织 (ETO)
-        <span class="faction-status hostile">敌对</span>
+        <span class="faction-status enemy">敌对</span>
       </h4>
       <p class="faction-desc">
         由叶文洁创立的反人类组织，信奉三体文明为主，视人类为罪恶物种。分为降临派（毁灭人类）、拯救派（拯救三体）、幸存派（苟且偷生）。通过古筝行动被联合国重创，但残余势力仍在活动。
       </p>
     </div>
     
-    <div class="faction-card resistance">
+    <div class="faction-card ally">
       <h4 class="faction-name">
         地球抵抗组织
-        <span class="faction-status friendly">友军</span>
+        <span class="faction-status ally">友军</span>
       </h4>
       <p class="faction-desc">
         秘密抵抗三体入侵的地下组织，由罗辑、章北海、维德等领袖领导。执行面壁计划、阶梯计划、掩体计划等重大战略。在威慑失败后转入地下，是人类文明延续的最后希望。
       </p>
     </div>
     
-    <div class="faction-card pdc">
+    <div class="faction-card neutral">
       <h4 class="faction-name">
         行星防御理事会 (PDC)
         <span class="faction-status neutral">中立</span>
@@ -1229,7 +1221,7 @@ footer {
       竭力不让脚步发出一点儿声音，<br>
       连呼吸都必须小心翼翼...
     </p>
-    <cite>—— 刘慈欣《黑暗森林》</cite>
+    <cite>—— 黑暗森林法则 · 宇宙社会学基本定理</cite>
   </blockquote>
 </section>
 
@@ -1257,12 +1249,11 @@ footer {
     地球抵抗组织  危机纪元205年 | 给岁月以文明
   </p>
   <p class="footer-quote">
-    我们都是阴沟里的虫子，但总还是得有人仰望星空。<br>
-    —— 刘慈欣《三体》
+    我们都是阴沟里的虫子，但总还是得有人仰望星空。
   </p>
   <div class="footer-links">
     <a href="#about">关于组织</a>
-    <a href="#books">三部全史</a>
+    <a href="#history">危机全史</a>
     <a href="#factions">势力分布</a>
     <a href="#wallfacer">面壁计划</a>
   </div>
