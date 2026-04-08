@@ -1,18 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>鍦扮悆鎶垫姉缁勭粐</title>
+<title>地球抵抗组织</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { 
-  font-family: Arial, "Microsoft YaHei", sans-serif; 
+  font-family: Arial, "Microsoft YaHei", "SimHei", sans-serif; 
   background: #050508; 
   color: #e8e8e8; 
   line-height: 1.8;
 }
-
 header {
   position: fixed;
   top: 0;
@@ -26,7 +25,6 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-
 .logo { display: flex; align-items: center; gap: 0.75rem; }
 .logo-icon {
   width: 42px;
@@ -36,26 +34,13 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: pulse 2s infinite;
 }
 .logo-icon::before { content: '+'; font-size: 1.4rem; color: #ff2a2a; font-weight: bold; }
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 42, 42, 0.6); }
-  50% { box-shadow: 0 0 25px 8px rgba(255, 42, 42, 0.6); }
-}
 .logo-text { font-size: 1.1rem; font-weight: bold; letter-spacing: 0.2em; }
 .logo-text span { color: #ff2a2a; }
-
 nav { display: flex; gap: 2rem; }
-nav a {
-  color: #5a5a6e;
-  text-decoration: none;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  transition: color 0.3s;
-}
+nav a { color: #5a5a6e; text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em; }
 nav a:hover { color: #e8e8e8; }
-
 .hero {
   min-height: 100vh;
   display: flex;
@@ -64,12 +49,8 @@ nav a:hover { color: #e8e8e8; }
   align-items: center;
   text-align: center;
   padding: 7rem 2rem 4rem;
-  background: 
-    radial-gradient(ellipse at 20% 80%, rgba(255,42,42,0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(0,212,255,0.1) 0%, transparent 50%),
-    #050508;
+  background: radial-gradient(ellipse at 20% 80%, rgba(255,42,42,0.15) 0%, transparent 50%), #050508;
 }
-
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -83,7 +64,6 @@ nav a:hover { color: #e8e8e8; }
   letter-spacing: 0.15em;
   margin-bottom: 2.5rem;
 }
-
 .hero h1 {
   font-size: clamp(2rem, 8vw, 5rem);
   font-weight: bold;
@@ -91,16 +71,8 @@ nav a:hover { color: #e8e8e8; }
   margin-bottom: 1.5rem;
   text-shadow: 0 0 40px rgba(255, 42, 42, 0.6);
 }
-
 .hero h1 .highlight { color: #ff2a2a; }
-
-.hero-subtitle {
-  font-size: 1.1rem;
-  color: #5a5a6e;
-  letter-spacing: 0.4em;
-  margin-bottom: 3.5rem;
-}
-
+.hero-subtitle { font-size: 1.1rem; color: #5a5a6e; letter-spacing: 0.4em; margin-bottom: 3.5rem; }
 .hero-quote {
   max-width: 650px;
   font-size: 1.05rem;
@@ -110,463 +82,70 @@ nav a:hover { color: #e8e8e8; }
   padding-left: 1.5rem;
   text-align: left;
 }
-
-.hero-quote .author {
-  display: block;
-  margin-top: 0.8rem;
-  font-size: 0.8rem;
-  color: #5a5a6e;
-  letter-spacing: 0.1em;
-}
-
-.countdown-box {
-  margin-top: 3rem;
-  padding: 1.5rem 2.5rem;
-  background: rgba(0,0,0,0.5);
-  border: 1px solid #1a1a2e;
-  border-radius: 8px;
-}
-
-.countdown-label {
-  font-size: 0.7rem;
-  color: #5a5a6e;
-  letter-spacing: 0.2em;
-  margin-bottom: 0.5rem;
-}
-
-.countdown-time {
-  font-family: "Courier New", monospace;
-  font-size: 2rem;
-  color: #ff2a2a;
-  letter-spacing: 0.15em;
-  text-shadow: 0 0 20px rgba(255, 42, 42, 0.6);
-}
-
+.hero-quote .author { display: block; margin-top: 0.8rem; font-size: 0.8rem; color: #5a5a6e; }
+.countdown-box { margin-top: 3rem; padding: 1.5rem 2.5rem; background: rgba(0,0,0,0.5); border: 1px solid #1a1a2e; border-radius: 8px; }
+.countdown-label { font-size: 0.7rem; color: #5a5a6e; letter-spacing: 0.2em; margin-bottom: 0.5rem; }
+.countdown-time { font-family: "Courier New", monospace; font-size: 2rem; color: #ff2a2a; letter-spacing: 0.15em; }
 section { padding: 5rem 2rem; }
-
-.section-header {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.section-label {
-  display: inline-block;
-  padding: 0.5rem 1.2rem;
-  background: rgba(255, 42, 42, 0.1);
-  border: 1px solid #ff2a2a;
-  color: #ff2a2a;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  margin-bottom: 1.2rem;
-}
-
-.section-title {
-  font-size: 2.2rem;
-  letter-spacing: 0.2em;
-  margin-bottom: 1.2rem;
-}
-
-.section-desc {
-  color: #5a5a6e;
-  max-width: 650px;
-  margin: 0 auto;
-  font-size: 1rem;
-  line-height: 1.9;
-}
-
-.books-section {
-  background: 
-    radial-gradient(ellipse at 10% 50%, rgba(184,41,221,0.08) 0%, transparent 50%),
-    #050508;
-}
-
-.books-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 2.5rem;
-  max-width: 1300px;
-  margin: 0 auto;
-}
-
-.book-card {
-  background: #0a0a10;
-  border: 1px solid #1a1a2e;
-  border-radius: 12px;
-  padding: 2.5rem;
-  transition: all 0.4s;
-  position: relative;
-}
-
-.book-card:hover {
-  border-color: rgba(255,42,42,0.5);
-  transform: translateY(-8px);
-}
-
-.book-number {
-  font-family: "Courier New", monospace;
-  font-size: 3.5rem;
-  color: #ff2a2a;
-  opacity: 0.25;
-  position: absolute;
-  top: 1.2rem;
-  right: 1.8rem;
-  font-weight: bold;
-}
-
-.book-title {
-  font-size: 1.5rem;
-  margin-bottom: 0.6rem;
-  letter-spacing: 0.1em;
-}
-
-.book-subtitle {
-  font-size: 0.85rem;
-  color: #00d4ff;
-  letter-spacing: 0.1em;
-  margin-bottom: 1.2rem;
-}
-
-.book-desc {
-  font-size: 0.95rem;
-  color: #5a5a6e;
-  line-height: 2;
-}
-
+.section-header { text-align: center; margin-bottom: 4rem; }
+.section-label { display: inline-block; padding: 0.5rem 1.2rem; background: rgba(255, 42, 42, 0.1); border: 1px solid #ff2a2a; color: #ff2a2a; font-size: 0.7rem; letter-spacing: 0.2em; margin-bottom: 1.2rem; }
+.section-title { font-size: 2.2rem; letter-spacing: 0.2em; margin-bottom: 1.2rem; }
+.section-desc { color: #5a5a6e; max-width: 650px; margin: 0 auto; font-size: 1rem; line-height: 1.9; }
+.books-section { background: radial-gradient(ellipse at 10% 50%, rgba(184,41,221,0.08) 0%, transparent 50%), #050508; }
+.books-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; max-width: 1300px; margin: 0 auto; }
+.book-card { background: #0a0a10; border: 1px solid #1a1a2e; border-radius: 12px; padding: 2.5rem; position: relative; }
+.book-card:hover { border-color: rgba(255,42,42,0.5); transform: translateY(-8px); }
+.book-number { font-family: "Courier New", monospace; font-size: 3.5rem; color: #ff2a2a; opacity: 0.25; position: absolute; top: 1.2rem; right: 1.8rem; font-weight: bold; }
+.book-title { font-size: 1.5rem; margin-bottom: 0.6rem; letter-spacing: 0.1em; }
+.book-subtitle { font-size: 0.85rem; color: #00d4ff; letter-spacing: 0.1em; margin-bottom: 1.2rem; }
+.book-desc { font-size: 0.95rem; color: #5a5a6e; line-height: 2; }
 .factions-section { background: #0a0a10; }
-
-.factions-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.faction-card {
-  background: #050508;
-  border: 1px solid #1a1a2e;
-  border-radius: 10px;
-  padding: 2rem;
-  transition: all 0.3s;
-}
-
+.factions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+.faction-card { background: #050508; border: 1px solid #1a1a2e; border-radius: 10px; padding: 2rem; }
 .faction-card.eto { border-left: 4px solid #ff2a2a; }
 .faction-card.resistance { border-left: 4px solid #00ff41; }
 .faction-card.pdc { border-left: 4px solid #00d4ff; }
-
-.faction-card:hover {
-  background: rgba(255, 255, 255, 0.02);
-  transform: translateX(5px);
-}
-
-.faction-name {
-  font-size: 1.2rem;
-  margin-bottom: 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  letter-spacing: 0.1em;
-}
-
-.faction-status {
-  font-size: 0.65rem;
-  padding: 0.25rem 0.6rem;
-  border-radius: 4px;
-  letter-spacing: 0.1em;
-  font-weight: bold;
-}
-
-.faction-status.hostile {
-  background: rgba(255, 42, 42, 0.15);
-  color: #ff2a2a;
-  border: 1px solid rgba(255,42,42,0.3);
-}
-
-.faction-status.friendly {
-  background: rgba(0, 255, 65, 0.1);
-  color: #00ff41;
-  border: 1px solid rgba(0,255,65,0.3);
-}
-
-.faction-status.neutral {
-  background: rgba(0, 212, 255, 0.1);
-  color: #00d4ff;
-  border: 1px solid rgba(0,212,255,0.3);
-}
-
-.faction-desc {
-  font-size: 0.9rem;
-  color: #5a5a6e;
-  line-height: 1.9;
-}
-
-.wallfacer-section {
-  background: 
-    radial-gradient(ellipse at 90% 50%, rgba(255,176,0,0.08) 0%, transparent 50%),
-    #050508;
-}
-
-.wallfacer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.wallfacer-card {
-  background: #0a0a10;
-  border: 1px solid #1a1a2e;
-  border-radius: 12px;
-  padding: 2.5rem 2rem;
-  text-align: center;
-  position: relative;
-  transition: all 0.3s;
-}
-
-.wallfacer-card:hover {
-  border-color: #ffb000;
-  box-shadow: 0 0 30px rgba(255,176,0,0.1);
-}
-
-.wallfacer-avatar {
-  width: 90px;
-  height: 90px;
-  border: 2px solid #1a1a2e;
-  border-radius: 50%;
-  margin: 0 auto 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  background: rgba(255,255,255,0.02);
-}
-
-.wallfacer-name {
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.1em;
-}
-
-.wallfacer-title {
-  font-size: 0.8rem;
-  color: #ffb000;
-  letter-spacing: 0.15em;
-  margin-bottom: 1.2rem;
-}
-
-.wallfacer-strategy {
-  font-size: 0.9rem;
-  color: #5a5a6e;
-  font-style: italic;
-  padding: 1rem;
-  background: rgba(0,0,0,0.3);
-  border-radius: 6px;
-  border-left: 3px solid #ffb000;
-}
-
+.faction-name { font-size: 1.2rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem; letter-spacing: 0.1em; }
+.faction-status { font-size: 0.65rem; padding: 0.25rem 0.6rem; border-radius: 4px; letter-spacing: 0.1em; font-weight: bold; }
+.faction-status.hostile { background: rgba(255, 42, 42, 0.15); color: #ff2a2a; border: 1px solid rgba(255,42,42,0.3); }
+.faction-status.friendly { background: rgba(0, 255, 65, 0.1); color: #00ff41; border: 1px solid rgba(0,255,65,0.3); }
+.faction-status.neutral { background: rgba(0, 212, 255, 0.1); color: #00d4ff; border: 1px solid rgba(0,212,255,0.3); }
+.faction-desc { font-size: 0.9rem; color: #5a5a6e; line-height: 1.9; }
+.wallfacer-section { background: radial-gradient(ellipse at 90% 50%, rgba(255,176,0,0.08) 0%, transparent 50%), #050508; }
+.wallfacer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+.wallfacer-card { background: #0a0a10; border: 1px solid #1a1a2e; border-radius: 12px; padding: 2.5rem 2rem; text-align: center; }
+.wallfacer-avatar { width: 90px; height: 90px; border: 2px solid #1a1a2e; border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; background: rgba(255,255,255,0.02); }
+.wallfacer-name { font-size: 1.3rem; margin-bottom: 0.5rem; letter-spacing: 0.1em; }
+.wallfacer-title { font-size: 0.8rem; color: #ffb000; letter-spacing: 0.15em; margin-bottom: 1.2rem; }
+.wallfacer-strategy { font-size: 0.9rem; color: #5a5a6e; font-style: italic; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 6px; border-left: 3px solid #ffb000; }
 .tech-section { background: #050508; }
-
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.tech-card {
-  background: #0a0a10;
-  border: 1px solid #1a1a2e;
-  border-radius: 10px;
-  padding: 2rem;
-  transition: all 0.3s;
-}
-
-.tech-card:hover {
-  border-color: #00d4ff;
-  transform: translateY(-5px);
-}
-
-.tech-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.tech-name {
-  font-size: 1.1rem;
-  margin-bottom: 0.8rem;
-  letter-spacing: 0.1em;
-  color: #00d4ff;
-}
-
-.tech-desc {
-  font-size: 0.9rem;
-  color: #5a5a6e;
-  line-height: 1.8;
-}
-
-.dark-forest-section {
-  padding: 7rem 2rem;
-  text-align: center;
-  background: #0a0a10;
-  position: relative;
-}
-
-.dark-forest-section blockquote {
-  position: relative;
-  z-index: 1;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.dark-forest-section p {
-  font-size: clamp(1.1rem, 3.5vw, 1.6rem);
-  line-height: 2.2;
-  margin-bottom: 2rem;
-  letter-spacing: 0.1em;
-}
-
-.dark-forest-section .highlight {
-  color: #ff2a2a;
-  font-weight: bold;
-  text-shadow: 0 0 20px rgba(255, 42, 42, 0.6);
-}
-
-.dark-forest-section cite {
-  color: #5a5a6e;
-  font-size: 0.95rem;
-  letter-spacing: 0.2em;
-  font-style: normal;
-}
-
-.join-section {
-  padding: 7rem 2rem;
-  text-align: center;
-  background: 
-    radial-gradient(ellipse at 50% 100%, rgba(255,42,42,0.1) 0%, transparent 60%),
-    #0a0a10;
-}
-
-.join-box {
-  max-width: 650px;
-  margin: 0 auto;
-  padding: 3.5rem;
-  background: #050508;
-  border: 1px solid #1a1a2e;
-  border-radius: 12px;
-  position: relative;
-}
-
-.join-box::before {
-  content: 'TOP SECRET';
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #050508;
-  padding: 0.4rem 1.2rem;
-  border: 1px solid #ff2a2a;
-  color: #ff2a2a;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  font-weight: bold;
-}
-
-.join-title {
-  font-size: 1.8rem;
-  margin-bottom: 1.2rem;
-  letter-spacing: 0.15em;
-}
-
-.join-desc {
-  color: #5a5a6e;
-  margin-bottom: 2.5rem;
-  line-height: 2;
-}
-
-.join-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-  padding: 1.2rem 3rem;
-  background: transparent;
-  border: 2px solid #ff2a2a;
-  color: #ff2a2a;
-  font-size: 0.95rem;
-  letter-spacing: 0.2em;
-  cursor: pointer;
-  transition: all 0.4s;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.join-btn:hover {
-  background: #ff2a2a;
-  color: #050508;
-  box-shadow: 0 0 40px rgba(255,42,42,0.6);
-  transform: scale(1.05);
-}
-
-footer {
-  padding: 4rem 2rem;
-  border-top: 1px solid #1a1a2e;
-  text-align: center;
-  background: #050508;
-}
-
-.footer-warning {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 1.2rem;
-  background: rgba(255, 42, 42, 0.1);
-  border: 1px solid #ff2a2a;
-  color: #ff2a2a;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  margin-bottom: 2rem;
-}
-
-.footer-text {
-  color: #5a5a6e;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  margin-bottom: 1rem;
-}
-
-.footer-quote {
-  font-style: italic;
-  color: #5a5a6e;
-  font-size: 0.95rem;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.9;
-}
-
-.footer-links {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.footer-links a {
-  color: #5a5a6e;
-  text-decoration: none;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  transition: color 0.3s;
-}
-
+.tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+.tech-card { background: #0a0a10; border: 1px solid #1a1a2e; border-radius: 10px; padding: 2rem; }
+.tech-card:hover { border-color: #00d4ff; transform: translateY(-5px); }
+.tech-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.tech-name { font-size: 1.1rem; margin-bottom: 0.8rem; letter-spacing: 0.1em; color: #00d4ff; }
+.tech-desc { font-size: 0.9rem; color: #5a5a6e; line-height: 1.8; }
+.dark-forest-section { padding: 7rem 2rem; text-align: center; background: #0a0a10; }
+.dark-forest-section blockquote { max-width: 900px; margin: 0 auto; }
+.dark-forest-section p { font-size: clamp(1.1rem, 3.5vw, 1.6rem); line-height: 2.2; margin-bottom: 2rem; letter-spacing: 0.1em; }
+.dark-forest-section .highlight { color: #ff2a2a; font-weight: bold; text-shadow: 0 0 20px rgba(255, 42, 42, 0.6); }
+.dark-forest-section cite { color: #5a5a6e; font-size: 0.95rem; letter-spacing: 0.2em; font-style: normal; }
+.join-section { padding: 7rem 2rem; text-align: center; background: radial-gradient(ellipse at 50% 100%, rgba(255,42,42,0.1) 0%, transparent 60%), #0a0a10; }
+.join-box { max-width: 650px; margin: 0 auto; padding: 3.5rem; background: #050508; border: 1px solid #1a1a2e; border-radius: 12px; position: relative; }
+.join-box::before { content: 'TOP SECRET'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #050508; padding: 0.4rem 1.2rem; border: 1px solid #ff2a2a; color: #ff2a2a; font-size: 0.7rem; letter-spacing: 0.2em; font-weight: bold; }
+.join-title { font-size: 1.8rem; margin-bottom: 1.2rem; letter-spacing: 0.15em; }
+.join-desc { color: #5a5a6e; margin-bottom: 2.5rem; line-height: 2; }
+.join-btn { display: inline-flex; align-items: center; gap: 0.8rem; padding: 1.2rem 3rem; background: transparent; border: 2px solid #ff2a2a; color: #ff2a2a; font-size: 0.95rem; letter-spacing: 0.2em; cursor: pointer; transition: all 0.4s; text-decoration: none; font-weight: bold; }
+.join-btn:hover { background: #ff2a2a; color: #050508; box-shadow: 0 0 40px rgba(255,42,42,0.6); transform: scale(1.05); }
+footer { padding: 4rem 2rem; border-top: 1px solid #1a1a2e; text-align: center; background: #050508; }
+.footer-warning { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.6rem 1.2rem; background: rgba(255, 42, 42, 0.1); border: 1px solid #ff2a2a; color: #ff2a2a; font-size: 0.75rem; letter-spacing: 0.15em; margin-bottom: 2rem; }
+.footer-text { color: #5a5a6e; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+.footer-quote { font-style: italic; color: #5a5a6e; font-size: 0.95rem; max-width: 600px; margin: 0 auto; line-height: 1.9; }
+.footer-links { margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; }
+.footer-links a { color: #5a5a6e; text-decoration: none; font-size: 0.75rem; letter-spacing: 0.1em; }
 .footer-links a:hover { color: #ff2a2a; }
-
 @media (max-width: 768px) {
-  header {
-    padding: 0.8rem;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
+  header { padding: 0.8rem; flex-direction: column; gap: 0.8rem; }
   .logo-text { font-size: 0.9rem; letter-spacing: 0.1em; }
   nav { gap: 0.8rem; flex-wrap: wrap; justify-content: center; }
   nav a { font-size: 0.7rem; letter-spacing: 0.05em; }
@@ -577,11 +156,7 @@ footer {
   .countdown-box { padding: 1rem 1.5rem; margin: 2rem 1rem 0; }
   .countdown-time { font-size: 1.1rem; letter-spacing: 0.1em; }
   .section-title { font-size: 1.5rem; letter-spacing: 0.1em; }
-  .books-grid, .factions-grid, .wallfacer-grid, .tech-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 0 0.5rem;
-  }
+  .books-grid, .factions-grid, .wallfacer-grid, .tech-grid { grid-template-columns: 1fr; gap: 1.5rem; padding: 0 0.5rem; }
   .book-card, .faction-card, .wallfacer-card, .tech-card { padding: 1.5rem; }
   .join-box { padding: 2rem 1rem; margin: 0 0.5rem; }
   .join-title { font-size: 1.3rem; }
@@ -594,69 +169,73 @@ footer {
 <header>
   <div class="logo">
     <div class="logo-icon"></div>
-    <div class="logo-text">鍦扮悆<span>鎶垫姉</span>缁勭粐</div>
+    <div class="logo-text">地球<span>抵抗</span>组织</div>
   </div>
   <nav>
-    <a href="#about">鍏充簬缁勭粐</a>
-    <a href="#books">涓夐儴鍏ㄥ彶</a>
-    <a href="#factions">鍔垮姏鍒嗗竷</a>
-    <a href="#wallfacer">闈㈠璁″垝</a>
-    <a href="#tech">绉戞妧妗ｆ</a>
+    <a href="#about">关于组织</a>
+    <a href="#books">三部全史</a>
+    <a href="#factions">势力分布</a>
+    <a href="#wallfacer">面壁计划</a>
+    <a href="#tech">科技档案</a>
   </nav>
 </header>
 
 <section class="hero" id="about">
   <div class="hero-badge">
     <span>!</span>
-    <span>鍔犲瘑棰戦亾 - 浠呴檺浜虹被璁块棶</span>
+    <span>加密频道 - 仅限人类访问</span>
   </div>
   
-  <h1>缁欏瞾鏈堜互<span class="highlight">鏂囨槑</span></h1>
-  <p class="hero-subtitle">鑰屼笉鏄粰鏂囨槑浠ュ瞾鏈?/p>
+  <h1>给岁月以<span class="highlight">文明</span></h1>
+  <p class="hero-subtitle">而不是给文明以岁月</p>
   
   <blockquote class="hero-quote">
-    "寮卞皬鍜屾棤鐭ヤ笉鏄敓瀛樼殑闅滅锛屽偛鎱㈡墠鏄€傞潰瀵逛笁浣撴枃鏄庣殑鍏ヤ镜锛屼汉绫诲繀椤绘斁涓嬪垎姝э紝鍥㈢粨涓€鑷淬€傛垜浠槸铏瓙锛屼絾铏瓙浠庢湭琚湡姝ｆ垬鑳滆繃銆?
-    <span class="author">鈥斺€?鍦扮悆鎶垫姉缁勭粐瀹ｈ█ 路 鍗辨満绾厓鍏冨勾</span>
+    弱小和无知不是生存的障碍，傲慢才是。面对三体文明的入侵，人类必须放下分歧，团结一致。我们是虫子，但虫子从未被真正战胜过。
+    <span class="author">—— 地球抵抗组织宣言 · 危机纪元元年</span>
   </blockquote>
   
   <div class="countdown-box">
-    <div class="countdown-label">涓変綋鑸伴槦鎶佃揪澶槼绯诲€掕鏃?/div>
-    <div class="countdown-time">195骞?247澶?08:33:17</div>
+    <div class="countdown-label">三体舰队抵达太阳系倒计时</div>
+    <div class="countdown-time">195年 247天 08:33:17</div>
   </div>
 </section>
 
 <section class="books-section" id="books">
   <div class="section-header">
     <span class="section-label">ARCHIVE</span>
-    <h2 class="section-title">涓変綋鍏ㄥ彶</h2>
+    <h2 class="section-title">三体全史</h2>
     <p class="section-desc">
-      鍒樻厛娆ｇ骞诲法钁椾笁閮ㄦ洸锛岃褰曚汉绫绘枃鏄庝笌涓変綋鏂囨槑鐨勫彶璇楃骇瀵瑰喅銆?br>
-      浠庣孩宀稿熀鍦扮殑绗竴澹板懠鍞わ紝鍒板お闃崇郴鐨勪簩缁村寲缁堢粨銆?    </p>
+      刘慈欣科幻巨著三部曲，记录人类文明与三体文明的史诗级对决。<br>
+      从红岸基地的第一声呼唤，到太阳系的二维化终结。
+    </p>
   </div>
   
   <div class="books-grid">
     <div class="book-card">
       <span class="book-number">01</span>
-      <h3 class="book-title">涓変綋</h3>
-      <p class="book-subtitle">鍦扮悆寰€浜?路 鏂囧寲澶ч潻鍛?路 绾㈠哺鍩哄湴</p>
+      <h3 class="book-title">三体</h3>
+      <p class="book-subtitle">地球往事 · 文化大革命 · 红岸基地</p>
       <p class="book-desc">
-        1967骞达紝娓呭崕澶у鐗╃悊绯诲鐢熷彾鏂囨磥鍦ㄧ埗浜茶鎵规枟鑷存鍚庯紝瀵逛汉绫诲交搴曠粷鏈涖€傚ス琚皟鍏ョ粷瀵嗙殑绾㈠哺鍩哄湴锛屽悜澶栧お绌哄彂鍑哄湴鐞冩枃鏄庣殑绗竴澹板懠鍞ゃ€傚洓鍏夊勾澶栵紝涓変綋涓栫晫鎺ユ敹鍒颁簡杩欐潯淇℃伅銆備笁棰楁棤瑙勫垯杩愯鐨勫お闃筹紝璁╀笁浣撴枃鏄庡湪姣佺伃涓庨噸鐢熶腑杞洖183娆°€備粬浠喅瀹氾細鍏ヤ镜鍦扮悆銆?      </p>
+        1967年，清华大学物理系学生叶文洁在父亲被批斗致死后，对人类彻底绝望。她被调入绝密的红岸基地，向外太空发出地球文明的第一声呼唤。四光年外，三体世界接收到了这条信息。三颗无规则运行的太阳，让三体文明在毁灭与重生中轮回183次。他们决定：入侵地球。
+      </p>
     </div>
     
     <div class="book-card">
       <span class="book-number">02</span>
-      <h3 class="book-title">榛戞殫妫灄</h3>
-      <p class="book-subtitle">瀹囧畽绀句細瀛?路 闈㈠璁″垝 路 榛戞殫妫灄娉曞垯</p>
+      <h3 class="book-title">黑暗森林</h3>
+      <p class="book-subtitle">宇宙社会学 · 面壁计划 · 黑暗森林法则</p>
       <p class="book-desc">
-        闈㈠涓変綋鑸伴槦鐨勫叆渚碉紝浜虹被鍚姩闈㈠璁″垝锛岄€夊嚭鍥涗綅闈㈠鑰呭埗瀹氱瀵嗘垬鐣ャ€傜綏杈戯紝涓€涓帺涓栦笉鎭殑绀句細瀛﹀崥澹紝琚笁浣撴枃鏄庣偣鍚嶈拷鏉€銆傚湪鍙舵枃娲佺殑鍚彂涓嬶紝浠栭鎮熶簡瀹囧畽鐨勯粦鏆楁．鏋楁硶鍒欙細姣忎釜鏂囨槑閮芥槸甯︽灙鐨勭寧浜猴紝鏆撮湶鍗虫瘉鐏€備粬浠ュ悓褰掍簬灏界浉濞佽儊锛屽缓绔嬩簡瀵逛笁浣撲笘鐣岀殑榛戞殫妫灄濞佹厬銆?      </p>
+        面对三体舰队的入侵，人类启动面壁计划，选出四位面壁者制定秘密战略。罗辑，一个玩世不恭的社会学博士，被三体文明点名追杀。在叶文洁的启发下，他领悟了宇宙的黑暗森林法则：每个文明都是带枪的猎人，暴露即毁灭。他以同归于尽相威胁，建立了对三体世界的黑暗森林威慑。
+      </p>
     </div>
     
     <div class="book-card">
       <span class="book-number">03</span>
-      <h3 class="book-title">姝荤姘哥敓</h3>
-      <p class="book-subtitle">闄嶇淮鎵撳嚮 路 浜岀淮鍖?路 瀹囧畽缁堢粨</p>
+      <h3 class="book-title">死神永生</h3>
+      <p class="book-subtitle">降维打击 · 二维化 · 宇宙终结</p>
       <p class="book-desc">
-        濞佹厬绾厓62骞达紝鎵у墤浜虹▼蹇冩帴鏇跨綏杈戙€傚▉鎱戝け璐ワ紝涓変綋涓栫晫鎽ф瘉浜嗗湴鐞冧笂鐨勫紩鍔涙尝鍙戝皠鍙帮紝浜虹被琚揩鍏ㄩ儴杩佺Щ鑷虫境澶у埄浜氥€傞殢鍚庯紝闅愯棌鍦ㄥお闃崇郴鐨?姝岃€?鏂囨槑鎶曟幏浜嗕簩鍚戠當锛屾暣涓お闃崇郴琚簩缁村寲銆傜▼蹇冧箻鍧愭洸鐜囬┍鍔ㄩ鑸归€冪锛屾垚涓轰汉绫绘枃鏄庣殑鏈€鍚庤璇佽€呫€傚畤瀹欑殑缁堢偣锛屾槸姝荤姘哥敓銆?      </p>
+        威慑纪元62年，执剑人程心接替罗辑。威慑失败，三体世界摧毁了地球上的引力波发射台，人类被迫全部迁移至澳大利亚。随后，隐藏在太阳系的歌者文明投掷了二向箔，整个太阳系被二维化。程心乘坐曲率驱动飞船逃离，成为人类文明的最后见证者。宇宙的终点，是死神永生。
+      </p>
     </div>
   </div>
 </section>
@@ -664,36 +243,39 @@ footer {
 <section class="factions-section" id="factions">
   <div class="section-header">
     <span class="section-label">FACTIONS</span>
-    <h2 class="section-title">鍔垮姏鍒嗗竷</h2>
-    <p class="section-desc">鍗辨満绾厓涓殑涓昏浜虹被缁勭粐涓庡娍鍔?/p>
+    <h2 class="section-title">势力分布</h2>
+    <p class="section-desc">危机纪元中的主要人类组织与势力</p>
   </div>
   
   <div class="factions-grid">
     <div class="faction-card eto">
       <h4 class="faction-name">
-        鍦扮悆涓変綋缁勭粐 (ETO)
-        <span class="faction-status hostile">鏁屽</span>
+        地球三体组织 (ETO)
+        <span class="faction-status hostile">敌对</span>
       </h4>
       <p class="faction-desc">
-        鐢卞彾鏂囨磥鍒涚珛鐨勫弽浜虹被缁勭粐锛屼俊濂変笁浣撴枃鏄庝负"涓?锛岃浜虹被涓虹姜鎭剁墿绉嶃€傚垎涓洪檷涓存淳锛堟瘉鐏汉绫伙級銆佹嫰鏁戞淳锛堟嫰鏁戜笁浣擄級銆佸垢瀛樻淳锛堣嫙涓斿伔鐢燂級銆傞€氳繃"鍙ょ瓭琛屽姩"琚仈鍚堝浗閲嶅垱锛屼絾娈嬩綑鍔垮姏浠嶅湪娲诲姩銆?      </p>
+        由叶文洁创立的反人类组织，信奉三体文明为主，视人类为罪恶物种。分为降临派（毁灭人类）、拯救派（拯救三体）、幸存派（苟且偷生）。通过古筝行动被联合国重创，但残余势力仍在活动。
+      </p>
     </div>
     
     <div class="faction-card resistance">
       <h4 class="faction-name">
-        鍦扮悆鎶垫姉缁勭粐
-        <span class="faction-status friendly">鍙嬪啗</span>
+        地球抵抗组织
+        <span class="faction-status friendly">友军</span>
       </h4>
       <p class="faction-desc">
-        绉樺瘑鎶垫姉涓変綋鍏ヤ镜鐨勫湴涓嬬粍缁囷紝鐢辩綏杈戙€佺珷鍖楁捣銆佺淮寰风瓑棰嗚棰嗗銆傛墽琛岄潰澹佽鍒掋€侀樁姊鍒掋€佹帺浣撹鍒掔瓑閲嶅ぇ鎴樼暐銆傚湪濞佹厬澶辫触鍚庤浆鍏ュ湴涓嬶紝鏄汉绫绘枃鏄庡欢缁殑鏈€鍚庡笇鏈涖€?      </p>
+        秘密抵抗三体入侵的地下组织，由罗辑、章北海、维德等领袖领导。执行面壁计划、阶梯计划、掩体计划等重大战略。在威慑失败后转入地下，是人类文明延续的最后希望。
+      </p>
     </div>
     
     <div class="faction-card pdc">
       <h4 class="faction-name">
-        琛屾槦闃插尽鐞嗕簨浼?(PDC)
-        <span class="faction-status neutral">涓珛</span>
+        行星防御理事会 (PDC)
+        <span class="faction-status neutral">中立</span>
       </h4>
       <p class="faction-desc">
-        鑱斿悎鍥戒笅灞炴満鏋勶紝璐熻矗鍗忚皟鍏ㄧ悆闃插尽涓変綋鍏ヤ镜銆傚惎鍔ㄩ潰澹佽鍒掋€侀樁姊鍒掋€佹帺浣撹鍒掔瓑閲嶅ぇ宸ョ▼銆傚湪濞佹厬绾厓鏈熼棿璐熻矗缁存姢榛戞殫妫灄濞佹厬绯荤粺銆?      </p>
+        联合国下属机构，负责协调全球防御三体入侵。启动面壁计划、阶梯计划、掩体计划等重大工程。在威慑纪元期间负责维护黑暗森林威慑系统。
+      </p>
     </div>
   </div>
 </section>
@@ -701,46 +283,48 @@ footer {
 <section class="wallfacer-section" id="wallfacer">
   <div class="section-header">
     <span class="section-label">WALLFACER PROJECT</span>
-    <h2 class="section-title">闈㈠璁″垝</h2>
-    <p class="section-desc">鑱斿悎鍥介€夊嚭鐨勫洓浣嶉潰澹佽€咃紝鍚勮嚜鍒跺畾绉樺瘑鎴樼暐瀵规姉涓変綋鍏ヤ镜</p>
+    <h2 class="section-title">面壁计划</h2>
+    <p class="section-desc">联合国选出的四位面壁者，各自制定秘密战略对抗三体入侵</p>
   </div>
   
   <div class="wallfacer-grid">
     <div class="wallfacer-card">
       <div class="wallfacer-avatar">1</div>
-      <h4 class="wallfacer-name">寮楅噷寰烽噷鍏嬄锋嘲鍕?/h4>
-      <p class="wallfacer-title">绗竴浣嶉潰澹佽€?/p>
+      <h4 class="wallfacer-name">弗里德里克·泰勒</h4>
+      <p class="wallfacer-title">第一位面壁者</p>
       <p class="wallfacer-strategy">
-        "閲忓瓙骞界伒鑸伴槦璁″垝"<br>
-        寤虹珛涓€鏀敱鐞冪姸闂數姝﹀櫒鏀诲嚮鍚庨噺瀛愬寲鐨勫お绌鸿埌闃燂紝浠ュ菇鐏佃埌闃熷鎶椾笁浣?      </p>
+        量子幽灵舰队计划<br>
+        建立一支由球状闪电武器攻击后量子化的太空舰队，以幽灵舰队对抗三体
+      </p>
     </div>
     
     <div class="wallfacer-card">
       <div class="wallfacer-avatar">2</div>
-      <h4 class="wallfacer-name">鏇煎姫灏斅烽浄杩簹鍏?/h4>
-      <p class="wallfacer-title">绗簩浣嶉潰澹佽€?/p>
+      <h4 class="wallfacer-name">曼努尔·雷迪亚兹</h4>
+      <p class="wallfacer-title">第二位面壁者</p>
       <p class="wallfacer-strategy">
-        "姘存槦鍧犺惤璁″垝"<br>
-        鍦ㄦ按鏄熼儴缃叉亽鏄熷瀷姘㈠脊锛屼竴鏃﹀紩鐖嗗皢浣垮お闃崇郴琛屾槦鍧犲叆澶槼锛屼互姣佺伃澶槼绯诲▉鑳佷笁浣?      </p>
+        水星坠落计划<br>
+        在水星部署恒星型氢弹，一旦引爆将使太阳系行星坠入太阳，以毁灭太阳系威胁三体
+      </p>
     </div>
     
     <div class="wallfacer-card">
       <div class="wallfacer-avatar">3</div>
-      <h4 class="wallfacer-name">姣斿皵路甯屾仼鏂?/h4>
-      <p class="wallfacer-title">绗笁浣嶉潰澹佽€?/p>
+      <h4 class="wallfacer-name">比尔·希恩斯</h4>
+      <p class="wallfacer-title">第三位面壁者</p>
       <p class="wallfacer-strategy">
-        "鎬濇兂閽㈠嵃璁″垝"<br>
-        鍙戞槑鎬濇兂閽㈠嵃鎶€鏈紝涓哄お绌哄啗鎴樺＋鎵撲笂"浜虹被蹇呰儨"鐨勪俊蹇碉紝鎻愬崌澹皵
+        思想钢印计划<br>
+        发明思想钢印技术，为太空军战士打上人类必胜的信念，提升士气
       </p>
     </div>
     
     <div class="wallfacer-card">
       <div class="wallfacer-avatar">4</div>
-      <h4 class="wallfacer-name">缃楄緫</h4>
-      <p class="wallfacer-title">绗洓浣嶉潰澹佽€?/p>
+      <h4 class="wallfacer-name">罗辑</h4>
+      <p class="wallfacer-title">第四位面壁者</p>
       <p class="wallfacer-strategy">
-        "榛戞殫妫灄濞佹厬"<br>
-        棰嗘偀瀹囧畽榛戞殫妫灄娉曞垯锛屼互鏆撮湶涓変綋涓栫晫鍧愭爣鐩稿▉鑳侊紝寤虹珛瀵逛笁浣撶殑鎴樼暐濞佹厬
+        黑暗森林威慑<br>
+        领悟宇宙黑暗森林法则，以暴露三体世界坐标相威胁，建立对三体的战略威慑
       </p>
     </div>
   </div>
@@ -749,51 +333,57 @@ footer {
 <section class="tech-section" id="tech">
   <div class="section-header">
     <span class="section-label">TECHNOLOGY</span>
-    <h2 class="section-title">绉戞妧妗ｆ</h2>
-    <p class="section-desc">鍗辨満绾厓涓殑鍏抽敭绉戞妧涓庢鍣ㄧ郴缁?/p>
+    <h2 class="section-title">科技档案</h2>
+    <p class="section-desc">危机纪元中的关键科技与武器系统</p>
   </div>
   
   <div class="tech-grid">
     <div class="tech-card">
       <div class="tech-icon">Z</div>
-      <h4 class="tech-name">鏅哄瓙</h4>
+      <h4 class="tech-name">智子</h4>
       <p class="tech-desc">
-        涓変綋鏂囨槑灏嗚川瀛愪簩缁村睍寮€鍚庤殌鍒荤數璺紝鍐嶆敹缂╁洖鍗佷竴缁村舰鎴愮殑瓒呯骇璁＄畻鏈恒€傝兘澶熼攣姝讳汉绫诲熀纭€鐗╃悊鐮旂┒锛屽苟瀹炴椂鐩戞帶鍦扮悆銆?      </p>
+        三体文明将质子二维展开后蚀刻电路，再收缩回十一维形成的超级计算机。能够锁死人类基础物理研究，并实时监控地球。
+      </p>
     </div>
     
     <div class="tech-card">
       <div class="tech-icon">W</div>
-      <h4 class="tech-name">姘存淮</h4>
+      <h4 class="tech-name">水滴</h4>
       <p class="tech-desc">
-        涓変綋鎺㈡祴鍣紝鐢卞己浜掍綔鐢ㄥ姏鏉愭枡锛圫IM锛夊埗鎴愶紝琛ㄩ潰缁濆鍏夋粦锛屾俯搴︽帴杩戠粷瀵归浂搴︺€傛懅姣佷簡浜虹被涓ゅ崈鑹樻亽鏄熺骇鎴樿埌銆?      </p>
+        三体探测器，由强互作用力材料（SIM）制成，表面绝对光滑，温度接近绝对零度。摧毁了人类两千艘恒星级战舰。
+      </p>
     </div>
     
     <div class="tech-card">
       <div class="tech-icon">G</div>
-      <h4 class="tech-name">寮曞姏娉㈠彂灏勫櫒</h4>
+      <h4 class="tech-name">引力波发射器</h4>
       <p class="tech-desc">
-        鑳藉鍚戝畤瀹欏箍鎾笁浣撲笘鐣屽潗鏍囩殑瑁呯疆锛屾槸榛戞殫妫灄濞佹厬鐨勬牳蹇冦€傜綏杈戜互姝ゅ缓绔嬪涓変綋涓栫晫鐨勬垬鐣ュ▉鎱戙€?      </p>
+        能够向宇宙广播三体世界坐标的装置，是黑暗森林威慑的核心。罗辑以此建立对三体世界的战略威慑。
+      </p>
     </div>
     
     <div class="tech-card">
       <div class="tech-icon">2</div>
-      <h4 class="tech-name">浜屽悜绠?/h4>
+      <h4 class="tech-name">二向箔</h4>
       <p class="tech-desc">
-        楂樼骇鏂囨槑浣跨敤鐨勯檷缁存鍣紝鑳藉灏嗕笁缁寸┖闂翠簩缁村寲銆傛瓕鑰呮枃鏄庣敤浜屽悜绠旀瘉鐏簡鏁翠釜澶槼绯汇€?      </p>
+        高级文明使用的降维武器，能够将三维空间二维化。歌者文明用二向箔毁灭了整个太阳系。
+      </p>
     </div>
     
     <div class="tech-card">
       <div class="tech-icon">C</div>
-      <h4 class="tech-name">鏇茬巼椹卞姩</h4>
+      <h4 class="tech-name">曲率驱动</h4>
       <p class="tech-desc">
-        閫氳繃鏀瑰彉椋炶埞鍚庢柟绌洪棿鏇茬巼瀹炵幇瓒呭厜閫熼琛屻€傜▼蹇冧箻鍧愭洸鐜囬┍鍔ㄩ鑸?鏄熺幆鍙?閫冪浜岀淮鍖栫殑澶槼绯汇€?      </p>
+        通过改变飞船后方空间曲率实现超光速飞行。程心乘坐曲率驱动飞船星环号逃离二维化的太阳系。
+      </p>
     </div>
     
     <div class="tech-card">
       <div class="tech-icon">J</div>
-      <h4 class="tech-name">闃舵璁″垝</h4>
+      <h4 class="tech-name">阶梯计划</h4>
       <p class="tech-desc">
-        灏嗕汉绫诲ぇ鑴戦€佸叆澶┖鐨勮鍒掋€備簯澶╂槑鐨勫ぇ鑴戣閫佸線涓変綋鑸伴槦锛屼负浜虹被甯﹀洖浜嗚嚦鍏抽噸瑕佺殑鎯呮姤銆?      </p>
+        将人类大脑送入太空的计划。云天明的大脑被送往三体舰队，为人类带回了至关重要的情报。
+      </p>
     </div>
   </div>
 </section>
@@ -801,28 +391,28 @@ footer {
 <section class="dark-forest-section">
   <blockquote>
     <p>
-      "瀹囧畽灏辨槸涓€搴?span class="highlight">榛戞殫妫灄</span>锛?br>
-      姣忎釜鏂囨槑閮芥槸甯︽灙鐨勭寧浜猴紝<br>
-      鍍忓菇鐏佃埇娼滆浜庢灄闂达紝<br>
-      杞昏交鎷ㄥ紑鎸¤矾鐨勬爲鏋濓紝<br>
-      绔姏涓嶈鑴氭鍙戝嚭涓€鐐瑰効澹伴煶锛?br>
-      杩炲懠鍚搁兘蹇呴』灏忓績缈肩考..."
+      宇宙就是一座<span class="highlight">黑暗森林</span>，<br>
+      每个文明都是带枪的猎人，<br>
+      像幽灵般潜行于林间，<br>
+      轻轻拨开挡路的树枝，<br>
+      竭力不让脚步发出一点儿声音，<br>
+      连呼吸都必须小心翼翼...
     </p>
-    <cite>鈥斺€?鍒樻厛娆ｃ€婇粦鏆楁．鏋椼€?/cite>
+    <cite>—— 刘慈欣《黑暗森林》</cite>
   </blockquote>
 </section>
 
 <section class="join-section">
   <div class="join-box">
-    <h3 class="join-title">鍔犲叆鎶垫姉缁勭粐</h3>
+    <h3 class="join-title">加入抵抗组织</h3>
     <p class="join-desc">
-      闈㈠涓変綋鏂囨槑鐨勫叆渚碉紝浜虹被闇€瑕佹瘡涓€涓垬澹€?br>
-      浣犵殑鍔犲叆锛屽皢鏄枃鏄庡欢缁殑甯屾湜銆?br>
-      <span style="color: #ff2a2a;">璀﹀憡锛氭墍鏈夌敵璇峰皢琚櫤瀛愮洃鎺?/span>
+      面对三体文明的入侵，人类需要每一个战士。<br>
+      你的加入，将是文明延续的希望。<br>
+      <span style="color: #ff2a2a;">警告：所有申请将被智子监控</span>
     </p>
     <a href="#" class="join-btn">
       <span>+</span>
-      <span>绔嬪嵆鍔犲叆</span>
+      <span>立即加入</span>
     </a>
   </div>
 </section>
@@ -830,27 +420,28 @@ footer {
 <footer>
   <div class="footer-warning">
     <span>!</span>
-    <span>鏈珯鐐瑰彈鏅哄瓙鐩戞帶锛岃浣跨敤鎬濈淮鍔犲瘑</span>
+    <span>本站点受智子监控，请使用思维加密</span>
   </div>
   <p class="footer-text">
-    鍦扮悆鎶垫姉缁勭粐  鍗辨満绾厓205骞?| 缁欏瞾鏈堜互鏂囨槑
+    地球抵抗组织  危机纪元205年 | 给岁月以文明
   </p>
   <p class="footer-quote">
-    "鎴戜滑閮芥槸闃存矡閲岀殑铏瓙锛屼絾鎬昏繕鏄緱鏈変汉浠版湜鏄熺┖銆?<br>
-    鈥斺€?鍒樻厛娆ｃ€婁笁浣撱€?  </p>
+    我们都是阴沟里的虫子，但总还是得有人仰望星空。<br>
+    —— 刘慈欣《三体》
+  </p>
   <div class="footer-links">
-    <a href="#about">鍏充簬缁勭粐</a>
-    <a href="#books">涓夐儴鍏ㄥ彶</a>
-    <a href="#factions">鍔垮姏鍒嗗竷</a>
-    <a href="#wallfacer">闈㈠璁″垝</a>
+    <a href="#about">关于组织</a>
+    <a href="#books">三部全史</a>
+    <a href="#factions">势力分布</a>
+    <a href="#wallfacer">面壁计划</a>
   </div>
 </footer>
 
 <script>
-document.querySelectorAll('nav a, .footer-links a').forEach(anchor => {
+document.querySelectorAll('nav a, .footer-links a').forEach(function(anchor) {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
+    var target = document.querySelector(this.getAttribute('href'));
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
     }
@@ -858,17 +449,17 @@ document.querySelectorAll('nav a, .footer-links a').forEach(anchor => {
 });
 
 function updateCountdown() {
-  const endDate = new Date('2200-01-01T00:00:00');
-  const now = new Date();
-  const diff = endDate - now;
+  var endDate = new Date('2200-01-01T00:00:00');
+  var now = new Date();
+  var diff = endDate - now;
   
-  const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-  const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  var years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+  var days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((diff % (1000 * 60)) / 1000);
   
-  const timeString = years + '骞?' + days + '澶?' + 
+  var timeString = years + '年 ' + days + '天 ' + 
     String(hours).padStart(2,'0') + ':' + 
     String(minutes).padStart(2,'0') + ':' + 
     String(seconds).padStart(2,'0');
